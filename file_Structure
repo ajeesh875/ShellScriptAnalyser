@@ -1,0 +1,24 @@
+ShellScriptAnalyser/
+│
+├── app.py
+├── config/
+│   ├── __init__.py
+│   ├── config.py
+│   └── config.ini
+├── modules/
+│   ├── __init__.py
+│   ├── constants.py  # <- Place constants.py here
+│   ├── scanners/
+│   │   ├── __init__.py
+│   │   ├── hardcoded_credentials_scanner.py
+│   │   ├── injection_scanner.py
+│   │   └── path_traversal_scanner.py
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── script.js
+├── templates/
+│   ├── index.html
+│   └── results.html
+└── venv/  (virtual environment directory, if using)

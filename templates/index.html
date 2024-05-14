@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAST Tool</title>
+</head>
+<body>
+    <h1>SAST Tool</h1>
+    <form action="/scan" method="post" enctype="multipart/form-data">
+        <label for="file">Upload Single File:</label>
+        <input type="file" id="file" name="file"><br><br>
+        <label for="project">Upload Entire Project:</label>
+        <input type="file" id="project" name="project" directory="" webkitdirectory="" mozdirectory=""><br><br>
+        <input type="submit" value="Scan">
+    </form>
+</body>
+</html>
