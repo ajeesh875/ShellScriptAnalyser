@@ -1,0 +1,164 @@
+<pfm:VPRoot xmlns:pfm="http://DONGEnergy.dk/VP/PFM">
+	<pfm:Notationtime Value="2025-03-18"></pfm:Notationtime>
+	<pfm:ContractStart Value="2025-04-01"></pfm:ContractStart>
+	<pfm:ContractEnd Value="2026-04-01"></pfm:ContractEnd>
+	<pfm:TimeZone Value="Europe/GasDay"></pfm:TimeZone>
+	<pfm:CalculationRequests>
+		<TermRequest Id="monthlyPremium" reference="monthlyPremium"></TermRequest>
+		<TermRequest Id="averageYearlyCapacityPrice" reference="averageYearlyCapacityPrice"></TermRequest>
+		<TermRequest Id="standaloneMonthlyPremium" reference="standaloneMonthlyPremium"></TermRequest>
+		<TermRequest Id="standaloneAverageYearlyCapacityPrice" reference="standaloneAverageYearlyCapacityPrice"></TermRequest>
+	</pfm:CalculationRequests>
+	<pfm:CalculationReports>
+		<Double Id="monthlyPremium">
+			<Double Value="126578.52888090053"></Double>
+			<Info>
+				<StackTrace></StackTrace>
+				<Request Id="monthlyPremium" reference="monthlyPremium"></Request>
+			</Info>
+			<Data></Data>
+		</Double>
+		<Double Id="averageYearlyCapacityPrice">
+			<Double Value="545.00630865610219"></Double>
+			<Info>
+				<StackTrace></StackTrace>
+				<Request Id="averageYearlyCapacityPrice" reference="averageYearlyCapacityPrice"></Request>
+			</Info>
+			<Data></Data>
+		</Double>
+		<Double Id="standaloneMonthlyPremium">
+			<Double Value="127628.92078331446"></Double>
+			<Info>
+				<StackTrace></StackTrace>
+				<Request Id="standaloneMonthlyPremium" reference="standaloneMonthlyPremium"></Request>
+			</Info>
+			<Data></Data>
+		</Double>
+		<Double Id="standaloneAverageYearlyCapacityPrice">
+			<Double Value="549.52895731095839"></Double>
+			<Info>
+				<StackTrace></StackTrace>
+				<Request Id="standaloneAverageYearlyCapacityPrice" reference="standaloneAverageYearlyCapacityPrice"></Request>
+			</Info>
+			<Data></Data>
+		</Double>
+	</pfm:CalculationReports>
+	<pfm:CPSLScript></pfm:CPSLScript>
+	<pfm:CPSLProfile>#calls,	self [sec],	total [sec],	cumm [%], name
+1,	77.662492,	77.662492,	 86.3, ORAConn::Connect(dongdwp.de-prod.dk:1521/DONGDWP)
+1,	7.415883,	85.096079,	 94.6, ORAConn::Select
+1,	4.341443,	89.441519,	 99.4, OtherDatabaseSource::fetchTimeseriesFromSql::portfolio_m3oracle
+2,	0.292374,	0.292374,	 99.7, ImportSource::LoadCPSLscript
+26,	0.095159,	89.863266,	 99.8, CALCULATION:HistoricalToOfftakePaths
+6,	0.035664,	89.921795,	 99.9, TransportCostSource:doCalculation
+4,	0.035397,	0.035866,	 99.9, ShippedLoad::getShippedData (non-cached)
+56,	0.025588,	0.027827,	 99.9, ForwardCurve: GenerateContracts
+17,	0.013578,	0.013578,	 99.9, TimeSerie::switchGranularity
+1,	0.010840,	0.010840,	100.0, ORAConn::Stream2VMatrix (draining OtlStream)
+7,	0.010445,	0.037955,	100.0, CALCULATION:mean
+1,	0.006863,	0.017703,	100.0, ORAConn::Stream2VMatrix
+22,	0.006628,	0.016351,	100.0, CALCULATION:CastTimeserieToContracts
+1,	0.003998,	85.100076,	100.0, DongDWDatabaseHelper::getDataFromSQL
+70,	0.001346,	89.961611,	100.0, TERMOPERATION:Multiplication
+18,	0.000831,	0.000854,	100.0, CALCULATION:LaggedSum
+39,	0.000797,	0.000819,	100.0, CALCULATION:addToDate
+179,	0.000602,	89.960376,	100.0, TERMOPERATION:Addition
+122,	0.000601,	0.001530,	100.0, ForwardCurve: FormatDate
+565,	0.000545,	89.963839,	100.0, TERMOPERATION:TermRef
+111,	0.000340,	89.878224,	100.0, CALCULATION:GranularityReduce
+4,	0.000299,	89.441884,	100.0, CALCULATION:AssembleTimeserie
+53,	0.000298,	0.039211,	100.0, SOURCEOPERATION:AssetManager
+1,	0.000243,	0.000243,	100.0, === TermReportGeneration ===
+9,	0.000235,	0.017048,	100.0, COLLECTIONS:Map
+53,	0.000211,	89.868013,	100.0, CALCULATION:LookUp
+146,	0.000148,	0.000148,	100.0, TERMOPERATION:Date
+52,	0.000117,	0.054668,	100.0, CALCULATION:Inverse
+16,	0.000109,	0.001183,	100.0, ForwardCurve: DaysBetween
+339,	0.000107,	89.907099,	100.0, TERMOPERATION:Calculation
+45,	0.000066,	0.000097,	100.0, ForwardCurve: ContractSelect
+249,	0.000065,	0.029632,	100.0, TERMOPERATION:ForwardCurve
+22,	0.000064,	0.035377,	100.0, TERM: .calc.Profile.Customer.historicHourlyProfile
+431,	0.000059,	0.000059,	100.0, TERMOPERATION:String
+6,	0.000057,	0.020669,	100.0, ForwardCurve: SimpleUnion
+9,	0.000048,	0.002003,	100.0, TimeSerie::castToTimeserie
+22,	0.000043,	89.732187,	100.0, TERMOPERATION:Cast
+2,	0.000038,	0.000038,	100.0, TimeSerie::clone
+118,	0.000037,	0.000434,	100.0, TERMOPERATION:Term
+3,	0.000035,	0.017154,	100.0, COLLECTIONS:Reduce
+2,	0.000031,	89.916217,	100.0, === TermRequest monthlyPremium ===
+33,	0.000031,	0.035902,	100.0, SOURCEOPERATION:ShippedLoad
+41,	0.000030,	0.000491,	100.0, CachingData::extract
+181,	0.000028,	0.000028,	100.0, TERMOPERATION:FloatingPoint
+12,	0.000023,	89.921834,	100.0, SOURCEOPERATION:TransportCost
+4,	0.000018,	89.441547,	100.0, SOURCEOPERATION:Database
+4,	0.000017,	0.032773,	100.0, TERMOPERATION:Negative
+12,	0.000015,	0.017167,	100.0, TERMOPERATION:Collection
+60,	0.000014,	0.000075,	100.0, TERM: .deliveryStart
+11,	0.000013,	0.000602,	100.0, TERM: .calc.Profile.Customer.expectedMonthlyOfftake
+40,	0.000012,	0.000018,	100.0, TERM: .countryCode
+60,	0.000012,	0.000068,	100.0, TERM: .deliveryEnd
+12,	0.000011,	0.038048,	100.0, TERM: .calc.Output.averageRequiredCapacity
+4,	0.000011,	0.001078,	100.0, ForwardCurve: ContractSetSize
+2,	0.000011,	0.000316,	100.0, === TermRequest averageYearlyCapacityPrice ===
+9,	0.000010,	89.921811,	100.0, TransportCostSource:getBaseData
+2,	0.000009,	0.000306,	100.0, === TermRequest standaloneAverageYearlyCapacityPrice ===
+2,	0.000008,	0.047069,	100.0, === TermRequest standaloneMonthlyPremium ===
+28,	0.000008,	0.000239,	100.0, TERM: .calc.TransportContracts._capacityPriceConversionFactor
+28,	0.000007,	0.000011,	100.0, TERM: .calc.Country.DK.capacityPriceConversionFactor
+2,	0.000007,	89.916186,	100.0, TERM: .monthlyPremium
+26,	0.000007,	0.000037,	100.0, TERM: .historyStart
+22,	0.000007,	0.000821,	100.0, TERM: .calc.Aux.daysInYear
+22,	0.000007,	0.106950,	100.0, TERM: .calc.Profile.Customer.historicProfileExtended
+22,	0.000006,	0.000438,	100.0, TERM: .calc.TransportContracts.ContractStrings._dateRangeString
+7,	0.000006,	0.000290,	100.0, CALCULATION:sum
+13,	0.000005,	0.000305,	100.0, TERM: .calc.TransportContracts.ContractStrings.month
+4,	0.000004,	89.441893,	100.0, TERM: .calc.Profile.Portfolio.Data.portfolio_m3
+11,	0.000004,	0.039836,	100.0, TERM: .calc.Profile.Customer.scalingFactor
+12,	0.000004,	0.000387,	100.0, TERM: .calc.Aux.deliveryPeriodYears
+11,	0.000004,	0.110966,	100.0, TERM: .calc.Profile.Customer.profileScaled
+10,	0.000004,	0.002462,	100.0, TERM: .calc.TransportContracts.month
+11,	0.000003,	0.110985,	100.0, TERM: .calc.Profile.Customer.value
+10,	0.000003,	0.000006,	100.0, TERM: .monthlyCapacityPrice
+8,	0.000003,	0.000081,	100.0, TERM: .calc.Output._addonConversionFactor
+13,	0.000003,	0.000003,	100.0, TERMOPERATION:ID
+2,	0.000003,	89.913973,	100.0, TERM: .calc.Output.Marginal.monthlyCost
+4,	0.000003,	89.732623,	100.0, TERM: .calc.Profile.Portfolio.historicHourlyProfile
+6,	0.000003,	0.018015,	100.0, TERM: .calc.TransportContracts.year
+8,	0.000003,	0.000005,	100.0, TERM: .addOn
+9,	0.000003,	0.054637,	100.0, TERM: .calc.Optimization.Customer.dailyMaxHour
+4,	0.000003,	89.756347,	100.0, TERM: .calc.Profile.Portfolio.value
+6,	0.000002,	0.000005,	100.0, TERM: .dailyCapacityPrice
+4,	0.000002,	89.756334,	100.0, TERM: .calc.Profile.Portfolio.historicProfileExtended
+6,	0.000002,	0.001167,	100.0, TERM: .calc.TransportContracts.quarter
+8,	0.000002,	0.000004,	100.0, TERM: .calc.Country.DK.addonConversionFactor
+6,	0.000002,	0.000003,	100.0, TERM: .quarterlyCapacityPrice
+4,	0.000002,	0.000044,	100.0, TERM: .calc.Profile.Portfolio._portfolioUnitConversionFactor
+6,	0.000002,	0.014704,	100.0, TERM: .calc.TransportContracts.day
+6,	0.000002,	0.000120,	100.0, TERM: .calc.TransportContracts.ContractStrings.quarter
+4,	0.000002,	0.000003,	100.0, TERM: .calc.Country.DK.portfolioUnitConversionFactor
+4,	0.000002,	0.038020,	100.0, TERM: .calc.Output.Marginal.addonCost
+2,	0.000002,	89.805979,	100.0, TERM: .calc.Profile.Combined.value
+6,	0.000002,	0.000003,	100.0, TERM: .yearlyCapacityPrice
+4,	0.000002,	89.913504,	100.0, TERM: .calc.Output.Marginal.totalCost
+3,	0.000002,	0.017169,	100.0, TERM: .calc.TransportContracts.ContractStrings.year
+2,	0.000001,	0.000305,	100.0, TERM: .averageYearlyCapacityPrice
+3,	0.000001,	0.000057,	100.0, TERM: .calc.TransportContracts.ContractStrings.day
+4,	0.000001,	0.000313,	100.0, TERM: .calc.Output.Standalone.addonCost
+4,	0.000001,	0.001082,	100.0, TERM: .calc.Aux.deliveryPeriodMonths
+2,	0.000001,	89.808835,	100.0, TERM: .calc.Optimization.Combined.dailyMaxHour
+4,	0.000001,	0.046748,	100.0, TERM: .calc.Output.Standalone.totalCost
+2,	0.000001,	0.000299,	100.0, TERM: .calc.Output.Marginal.averageCostByCapacity
+2,	0.000001,	0.047052,	100.0, TERM: .calc.Output.Standalone.monthlyCost
+2,	0.000001,	0.000004,	100.0, TERM: .calc.Profile.Portfolio.Data.Database.sql
+2,	0.000001,	0.014762,	100.0, TERM: .calc.Optimization.Portfolio.dailyMaxHour
+2,	0.000001,	0.000297,	100.0, TERM: .standaloneAverageYearlyCapacityPrice
+2,	0.000001,	0.047061,	100.0, TERM: .standaloneMonthlyPremium
+2,	0.000001,	0.000293,	100.0, TERM: .calc.Output.Standalone.averageCostByCapacity
+TOTAL: 89.964151 sec 
+
+Peak memory usage: 0.121071 GB
+
+pfmodel: HEAD remotes/origin/659dff8612688eb3d6dc62f14c112188378e6d9c:659dff8612688eb3d6dc62f14c112188378e6d9c
+ImportSource: Revision: 8653
+</pfm:CPSLProfile>
+</pfm:VPRoot>
