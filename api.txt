@@ -1,0 +1,456 @@
+https://dev.api.orsted.dk/hadrian
+
+https://test.api.orsted.dk/hadrian
+
+To access this API please add to a headers
+
+ 
+
+x-apikey: d583dde2c43cbf8519fa1aa5ee0be67a
+
+
+swagger: '2.0'
+info:
+  title: Chariot Job Queue API
+  description: API for submitting, processing, and retrieving jobs in Hadrian
+  version: '1.0.0'
+host: localhost
+basePath: /hadrian
+schemes:
+  - https
+securityDefinitions:
+    bearerAuth:
+      type: oauth2
+      flow: application
+      tokenUrl: https://login.microsoftonline.com/100b3c99-f3e2-4da0-9c8a-b9d345742c36/oauth2/v2.0/token
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: x-apikey
+security:
+  - bearerAuth: []
+  - APIKeyHeader: []
+paths:
+  /submit:
+    post:
+      summary: Client sends job
+      description: |
+        Submits a job to the specified queue in xml format.
+        - Optional `comment` parameter can be included.
+      parameters:
+        - name: comment
+          in: query
+          description: Optional comment for the job request.
+          required: false
+          type: string
+        - name: body
+          in: body
+          description: The xml job content.
+          required: true
+          schema:
+            type: string
+            format: xml
+      responses:
+        '201':
+          description: Job successfully submitted.
+          headers:
+            JobId:
+              description: Integer job ID number.
+              type: integer
+            CorrelationId:
+              description: String in UUID format.
+              type: string
+              format: uuid
+            JobStatus:
+              description: Status of the job.
+              type: string
+              enum: [Received, Dispatched, Finished, Failed]
+            Queue:
+              description: The queue name.
+              type: string
+            RequestUser:
+              description: Username used when the request was submitted.
+              type: string
+            RequestTime:
+              description: Date/time the request was submitted.
+              type: string
+              format: date-time
+            RequestIp:
+              description: IP address the request was submitted from.
+              type: string
+            RequestComment:
+              description: Comment made with the request (or "None" if none provided).
+              type: string
+          schema:
+            type: string
+            description: No content is specified, but the server may return something.
+        '404':
+          description: The queue does not exist.
+          schema:
+            type: string
+            description: No content is specified.
+        '500':
+          description: Unknown server error.
+          schema:
+            type: string
+            description: An error message.
+      consumes:
+        - application/text-xml
+      produces:
+        - text/plain
+    get:
+      summary: Backend sends response
+      description: |
+        Submits a response for a job.
+        - Requires `jobid` and `is_response=1` parameters.  
+        - Optional `comment` parameter can be included.
+      parameters:
+        - name: jobid
+          in: query
+          description: The ID of the job being responded to.
+          required: true
+          type: integer
+        - name: is_response
+          in: query
+          description: Indicates this is a response submission.
+          required: true
+          type: integer
+          enum: [1]
+        - name: comment
+          in: query
+          description: Optional comment for the response.
+          required: false
+          type: string
+        - name: body
+          in: body
+          description: The raw response content.
+          required: true
+          schema:
+            type: string
+            format: binary
+      responses:
+        '201':
+          description: Response successfully submitted.
+          headers:
+            JobId:
+              description: Integer job ID number.
+              type: integer
+            CorrelationId:
+              description: String in UUID format.
+              type: string
+              format: uuid
+            JobStatus:
+              description: Status of the job.
+              type: string
+              enum: [Received, Dispatched, Finished, Failed]
+            Queue:
+              description: The queue name.
+              type: string
+            RequestUser:
+              description: Username used when the request was submitted.
+              type: string
+            RequestTime:
+              description: Date/time the request was submitted.
+              type: string
+              format: date-time
+            RequestIp:
+              description: IP address the request was submitted from.
+              type: string
+            RequestComment:
+              description: Comment made with the request (or "None" if none provided).
+              type: string
+            DispatchTime:
+              description: Date/time the request was dispatched.
+              type: string
+              format: date-time
+            ResponseIsError:
+              description: Indicates if the response is an error (0 or 1).
+              type: integer
+              enum: [0, 1]
+            ResponseUser:
+              description: Username used when the response was submitted (or dispatched if in "Dispatched" state).
+              type: string
+            ResponseIp:
+              description: IP address the response was submitted from (or dispatched to if in "Dispatched" state).
+              type: string
+            ResponseTime:
+              description: Date/time the response was submitted.
+              type: string
+              format: date-time
+            ResponseComment:
+              description: Comment made with the response (or "None" if none provided).
+              type: string
+          schema:
+            type: string
+            description: No content is specified, but the server may return something.
+        '400':
+          description: Malformed request (e.g., missing jobid).
+          schema:
+            type: string
+            description: No content is specified.
+        '403':
+          description: Job has not yet been dispatched.
+          schema:
+            type: string
+            description: No content is specified.
+        '404':
+          description: Queue or job does not exist.
+          schema:
+            type: string
+            description: No content is specified.
+        '409':
+          description: Job has already completed.
+          schema:
+            type: string
+            description: No content is specified.
+        '500':
+          description: Unknown server error.
+          schema:
+            type: string
+            description: An error message.
+      consumes:
+        - application/text-xml
+      produces:
+        - text/plain
+
+  /poll/wait:
+    get:
+      summary: Backend waits for job
+      description: |
+        Polls the queue for stastus.  
+        - Requires `notify=1` and `wait` (in seconds) parameters.  
+        - Recommended `wait` period is not much longer than 60 seconds to avoid issues with network timeouts.  
+      parameters:
+        - name: notify
+          in: query
+          description: Indicates polling for a new job.
+          required: true
+          type: integer
+          enum: [1]
+        - name: wait
+          in: query
+          description: Time to wait for a job (in seconds).
+          required: true
+          type: integer
+      responses:
+        '302':
+          description: A job is waiting; redirects to the dispatch URL.
+          headers:
+            Location:
+              description: URL to dispatch the job.
+              type: string
+          schema:
+            type: string
+            description: No content is specified.
+        '204':
+          description: No job was available before the timeout.
+          schema:
+            type: string
+            description: No content is specified.
+        '404':
+          description: The queue does not exist.
+          schema:
+            type: string
+            description: No content is specified.
+      produces:
+        - text/plain
+
+  /poll/job:
+    get:
+      summary: Backend downloads job
+      description: |
+        Downloads a job from the queue, marking it as dispatched.  
+        - Requires `dispatch=1` parameter.
+      parameters:
+        - name: dispatch
+          in: query
+          description: Indicates job dispatch request.
+          required: true
+          type: integer
+          enum: [1]
+      responses:
+        '200':
+          description: Job was found and marked as dispatched.
+          headers:
+            JobId:
+              description: Integer job ID number.
+              type: integer
+            CorrelationId:
+              description: String in UUID format.
+              type: string
+              format: uuid
+            JobStatus:
+              description: Status of the job.
+              type: string
+              enum: [Received, Dispatched, Finished, Failed]
+            Queue:
+              description: The queue name.
+              type: string
+            RequestUser:
+              description: Username used when the request was submitted.
+              type: string
+            RequestTime:
+              description: Date/time the request was submitted.
+              type: string
+              format: date-time
+            RequestIp:
+              description: IP address the request was submitted from.
+              type: string
+            RequestComment:
+              description: Comment made with the request (or "None" if none provided).
+              type: string
+            DispatchTime:
+              description: Date/time the request was dispatched.
+              type: string
+              format: date-time
+            ResponseUser:
+              description: Username used when the response was submitted (or dispatched if in "Dispatched" state).
+              type: string
+            ResponseIp:
+              description: IP address the response was submitted from (or dispatched to if in "Dispatched" state).
+              type: string
+          schema:
+            type: string
+            format: binary
+            description: The job content.
+        '204':
+          description: No jobs were available.
+          schema:
+            type: string
+            description: No content is specified.
+        '404':
+          description: The queue does not exist.
+          schema:
+            type: string
+            description: No content is specified.
+      produces:
+        - application/octet-stream
+
+  /poll/document:
+    get:
+      summary: Client waits for response
+      description: |
+        Polls the queue to wait for a job response.  
+        - Requires `jobid` and `wait` (in seconds) parameters.
+      parameters:
+        - name: jobid
+          in: query
+          description: The ID of the job to wait for.
+          required: true
+          type: integer
+        - name: wait
+          in: query
+          description: Time to wait for a response (in seconds).
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Response was found.
+          headers:
+            JobId:
+              description: Integer job ID number.
+              type: integer
+            CorrelationId:
+              description: String in UUID format.
+              type: string
+              format: uuid
+            JobStatus:
+              description: Status of the job.
+              type: string
+              enum: [Received, Dispatched, Finished, Failed]
+            Queue:
+              description: The queue name.
+              type: string
+            RequestUser:
+              description: Username used when the request was submitted.
+              type: string
+            RequestTime:
+              description: Date/time the request was submitted.
+              type: string
+              format: date-time
+            RequestIp:
+              description: IP address the request was submitted from.
+              type: string
+            RequestComment:
+              description: Comment made with the request (or "None" if none provided).
+              type: string
+            DispatchTime:
+              description: Date/time the request was dispatched.
+              type: string
+              format: date-time
+            ResponseIsError:
+              description: Indicates if the response is an error (0 or 1).
+              type: integer
+              enum: [0, 1]
+            ResponseUser:
+              description: Username used when the response was submitted (or dispatched if in "Dispatched" state).
+              type: string
+            ResponseIp:
+              description: IP address the response was submitted from (or dispatched to if in "Dispatched" state).
+              type: string
+            ResponseTime:
+              description: Date/time the response was submitted.
+              type: string
+              format: date-time
+            ResponseComment:
+              description: Comment made with the response (or "None" if none provided).
+              type: string
+          schema:
+            type: string
+            format: binary
+            description: The response document.
+        '204':
+          description: No response was available before the timeout.
+          headers:
+            JobId:
+              description: Integer job ID number.
+              type: integer
+            CorrelationId:
+              description: String in UUID format.
+              type: string
+              format: uuid
+            JobStatus:
+              description: Status of the job.
+              type: string
+              enum: [Received, Dispatched, Finished, Failed]
+            Queue:
+              description: The queue name.
+              type: string
+            RequestUser:
+              description: Username used when the request was submitted.
+              type: string
+            RequestTime:
+              description: Date/time the request was submitted.
+              type: string
+              format: date-time
+            RequestIp:
+              description: IP address the request was submitted from.
+              type: string
+            RequestComment:
+              description: Comment made with the request (or "None" if none provided).
+              type: string
+            DispatchTime:
+              description: Date/time the request was dispatched.
+              type: string
+              format: date-time
+            ResponseUser:
+              description: Username used when the response was submitted (or dispatched if in "Dispatched" state).
+              type: string
+            ResponseIp:
+              description: IP address the response was submitted from (or dispatched to if in "Dispatched" state).
+              type: string
+          schema:
+            type: string
+            description: No content is specified.
+        '400':
+          description: Malformed request (e.g., missing jobid).
+          schema:
+            type: string
+            description: No content is specified.
+        '404':
+          description: Queue or job does not exist.
+          schema:
+            type: string
+            description: No content is specified.
+      produces:
+        - application/text-xml
