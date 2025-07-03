@@ -19,6 +19,7 @@
       Inputs.
     -->
 
+
     <Term Id="sourceId">
       <String>&lt;CustomerId=123456 externalReference1=87654321 externalReference2=null&gt;</String>
     </Term>
