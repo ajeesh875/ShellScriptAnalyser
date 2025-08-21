@@ -1,0 +1,37 @@
+<soapenv:Envelope xmlns:eam="http://interfaces.dong.com/services/eamsg"
+
+    xmlns:pay="http://interfaces.dong.com/services/prepoutgoing/request/payload"
+
+    xmlns:req="http://interfaces.dong.com/services/prepoutgoing/request" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <req:request>
+            <req:eamsgheader>
+                <eam:messageid>ID_1653631208540</eam:messageid>
+                <eam:source/>
+                <eam:msgdatetime>2025-05-27T06:00:08.556Z</eam:msgdatetime>
+                <eam:msgtimezone>GMT</eam:msgtimezone>
+                <eam:authinfo>
+                    <eam:userid>{userid}</eam:userid>
+                    <eam:authid>{authid}</eam:authid>
+                </eam:authinfo>
+            </req:eamsgheader>
+            <req:eamsgcontent>
+                <req:price_sets_request>
+                    <pay:changed_since/>
+                    <pay:notationtime>2025-05-27T00:00:00</pay:notationtime>
+                    <pay:price_set_requests>
+                        <pay:price_set_request>
+                            <pay:product_bid>1000139</pay:product_bid>
+                            <pay:delivery_period>HR</pay:delivery_period>
+                            <pay:price_source>NP</pay:price_source>
+                            <pay:price_provider>LIM</pay:price_provider>
+                            <pay:raw_flag>N</pay:raw_flag>
+                            <pay:price_notation_type>Cls</pay:price_notation_type>
+                        </pay:price_set_request>
+                    </pay:price_set_requests>
+                </req:price_sets_request>
+            </req:eamsgcontent>
+        </req:request>
+    </soapenv:Body>
+</soapenv:Envelope>
