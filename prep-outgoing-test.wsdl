@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PrepPriceSet_os" targetNamespace="http://dongenergy.dk/pi/PREP/PriceRepository" xmlns:p3="http://interfaces.dong.com/services/prepoutgoing/response" xmlns:p2="http://interfaces.dong.com/services/prepoutgoing/request" xmlns:p1="http://dongenergy.dk/pi/PREP/PriceRepository" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:documentation/>
+	<wsp:UsingPolicy wsdl:required="true"/>
+	<wsp:Policy wsu:Id="OP_RequestPriceSet"/>
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://interfaces.dong.com/services/pricesets" xmlns="http://interfaces.dong.com/services/pricesets" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:simpleType name="price_notation_typeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Example values:
+						AddOn: Add-On
+						Ask: Ask
+						Bid: Bid
+						Cls: Close
+						Fact: Factor
+						Hgh: High
+						Inx: Index
+						Low: Low
+						Lst: Last
+						Mid: Mid
+						Opn: Open
+						Reg: Regulation
+						Set: Settlement
+						UNK: Unknown
+						VaM: Value Measurement]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="unitType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Valuation units and currencies.
+						Example values:
+						1000L: Thousand liters (Volumetric)
+						1000M3: Thousand cubic meters (Volumetric)
+						BBL: Barrels (Volumetric)
+						CAD: Canadian Dollar (Monetary)
+						CHF: Swiss Franc (Monetary)
+						Cert: Certificate (Energy)
+						DKK: Danish kroner (Monetary)
+						DKKc: Danish øre (Monetary)
+						EUR: Euro (Monetary)
+						EURc: Euro cent (Monetary)
+						GBP: Great Brittish Pound (Monetary)
+						GBPc: Great British Pence (Monetary)
+						GCAL: Giga calories (Energy)
+						GCV: GCV (Calorific Value)
+						GJ: Gigajoule (Energy)
+						HL: Hektolitre (Volumetric)
+						ISK: Icelandic Kroner (Monetary)
+						JPY: Japanese Yen (Monetary)
+						KWh: Kilowatth hours (Energy)
+						L: Liters (Volumetric)
+						M3: Cubic metres (Volumetric)
+						MT: Metric Tonnes (Volumetric)
+						MWh: Megawatt hours (Energy)
+						NA: N/A (Calorific Value)
+						NCV: NCV (Calorific Value)
+						NOK: Norwegian kroner (Monetary)
+						PCT: Percent (Percent)
+						PLN: Polish Zloty (Monetary)
+						SEK: Swedish Kroner (Monetary)
+						SEKc: Swedish øre (Monetary)
+						Therm: Therm (Energy)
+						UNK: Unknown (Unknown)
+						USD: US Dollar (Monetary)
+						Year: Year (Time)]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="price_sourceType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Example values:
+						ABN: ABN AMRO
+						APX: APX
+						Arg: Argus
+						BAW: BAWI
+						DB: Deutsche Bank
+						DNB: Nationalbanken
+						DS: DS
+						ECB: ECB
+						EDX: Endex
+						EEX: EEX
+						EM: DONG Energy Markets
+						ENS: ENS
+						GT: GasTerra
+						HT: Hydro Texaco
+						Her: Heren
+						ICE: ICE
+						NP: Nordpool
+						PLA: Platts
+						Q8: Q8
+						RM: GTRM
+						SCB: SCB
+						SM: Skat
+						SRB: Sveriges Riksbank
+						Shl: Shell
+						StO: Statoil
+						TFS: TFS
+						TP: Tullett-Prebon
+						UNK: Unknown]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="delivery_periodType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Example values:
+						AP: Aperiodish
+						BOM: BOM
+						CMO: Current Month
+						DY: Day
+						FHR: Forward Hour
+						GY: Gas Year
+						HHR: Half-hour
+						HR: Hour
+						MO: Month
+						QHR: Quarter-hour
+						QT: Quarter
+						ROM: ROM
+						SEA: Season
+						WDY: Workingdays
+						WK: Week
+						WKE: Weekend
+						YR: Year]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="price_typeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Example values:
+						ACO: Asian call option
+						APO: Asian put option
+						COE: Coefficient
+						COL: Collar
+						ECO: Eur call option
+						EPO: Eur put option
+						FOR: Forward
+						FUT: Future
+						IMB: Imbalance
+						SET: Settlement
+						SPT: Spot
+						SWP: Swap
+						UCO: US call option
+						UNK: Unknown
+						UPO: US put option]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="raw_flagType">
+				<xsd:restriction base="xsd:string">
+					<xsd:length value="1"/>
+					<xsd:enumeration value="Y"/>
+					<xsd:enumeration value="N"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="dateTimeTZ">
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9](Z|[+-][0-9]{2}:[0-9]{2})"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="dateTimeNoTZ">
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="incoming_typeType">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="price"/>
+					<xsd:enumeration value="volatility"/>
+					<xsd:enumeration value="forward_model"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="priceType">
+				<xsd:sequence>
+					<xsd:element name="price_value" type="xsd:decimal" form="qualified"/>
+					<!--xsd:element name="notationtime" type="dateTimeNoTZ" form="qualified"-->
+					<xsd:element name="notationtime" type="xsd:string" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>No timezone is specified for notationtime, as notationtime is
+							assumed to be local to the market.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="version" type="xsd:positiveInteger" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>PREP will only send the latest version</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="priority" type="xsd:positiveInteger" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Moved down from price_set. 1 = highest priority</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="quality" type="xsd:positiveInteger" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>1 = highest quality</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="volatility" type="xsd:decimal" minOccurs="0" form="qualified"/>
+					<xsd:element name="traded_volume" type="xsd:decimal" minOccurs="0" form="qualified"/>
+					<xsd:element name="open_interest" type="xsd:nonNegativeInteger" minOccurs="0" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="period_datesType">
+				<xsd:sequence>
+					<xsd:element name="period_date" type="period_dateType" maxOccurs="unbounded" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="period_dateType">
+				<xsd:sequence>
+					<xsd:element name="delivery_period" type="delivery_periodType" form="qualified"/>
+					<!--xsd:element name="date_start" type="dateTimeNoTZ" minOccurs="0" form="qualified"-->
+					<xsd:element name="date_start" type="xsd:string" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>No timezone is specified for date_start;
+							it is assumed to be local to the market.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<!--xsd:element name="date_end" type="dateTimeNoTZ" minOccurs="0" form="qualified"-->
+					<xsd:element name="date_end" type="xsd:string" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>No timezone is specified for date_end;
+							it is assumed to be local to the market.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="tickercode" type="xsd:string" minOccurs="0" form="qualified"/>
+					<xsd:element name="strike" type="xsd:decimal" minOccurs="0" form="qualified"/>
+					<!--xsd:element name="exercise_date" type="dateTimeNoTZ" minOccurs="0" form="qualified"-->
+					<xsd:element name="exercise_date" type="xsd:string" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>No timezone is specified for exercise_date;
+							it is assumed to be local to the market.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="price" type="priceType" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="price_setsType">
+				<xsd:sequence>
+					<xsd:element name="changed_since" type="dateTimeTZ" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>
+								<![CDATA[This element simply echoes the changed_since element specified
+								in the request, converted to PREP local time (+01:00 or +02:00
+								for DST).
+								changed_since is not used for incoming prices.]]>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="updated_by" type="xsd:string" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Always &quot;PREP&quot; on outgoing prices.
+							For incoming prices: The name of the system sending prices</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="incoming_type" type="incoming_typeType" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>This element identifies the type of data coming in. Only used for incoming prices.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="price_set" type="price_setType" minOccurs="0" maxOccurs="unbounded" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="price_setType">
+				<xsd:sequence>
+					<xsd:element name="product_bid" type="xsd:positiveInteger" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Business ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="product_shortname" type="xsd:string" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>Logical identifier (PREP &quot;ticker&quot;)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="product_name" type="xsd:string" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>A common name defined by the business</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="price_source" type="price_sourceType" minOccurs="0" form="qualified"/>
+					<xsd:element name="raw_flag" type="raw_flagType" minOccurs="0" form="qualified"/>
+					<xsd:element name="price_type" type="price_typeType" minOccurs="0" form="qualified"/>
+					<xsd:element name="price_notation_type" type="price_notation_typeType" minOccurs="0" form="qualified"/>
+					<xsd:element name="price_unit_nominator" type="unitType" minOccurs="0" form="qualified"/>
+					<xsd:element name="price_unit_denominator" type="unitType" minOccurs="0" form="qualified"/>
+					<xsd:element name="period_dates" type="period_datesType" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://interfaces.dong.com/services/prepoutgoing/response" xmlns:popay="http://interfaces.dong.com/services/pricesets" xmlns="http://interfaces.dong.com/services/prepoutgoing/response" xmlns:eams="http://interfaces.dong.com/services/eamsg" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://interfaces.dong.com/services/eamsg"/>
+			<xsd:import namespace="http://interfaces.dong.com/services/pricesets"/>
+			<xsd:element name="response">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="eamsgheader" type="eams:eamsgheaderType" form="qualified"/>
+						<xsd:element name="eamsgcontent" minOccurs="0" form="qualified">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:annotation>
+										<xsd:documentation>This is the payload. PREP will pass this
+										to SAP PI as a CLOB out-parameter</xsd:documentation>
+									</xsd:annotation>
+									<xsd:element name="price_sets" type="popay:price_setsType" minOccurs="0" form="qualified"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://interfaces.dong.com/services/eamsg" xmlns="http://interfaces.dong.com/services/eamsg" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:complexType name="eamsgheaderType">
+				<xsd:sequence>
+					<xsd:element name="messageid" type="xsd:string" form="qualified"/>
+					<xsd:element name="source" type="xsd:string" form="qualified"/>
+					<xsd:element name="msgdatetime" type="xsd:dateTime" form="qualified"/>
+					<xsd:element name="msgtimezone" type="xsd:string" default="GMT+1" form="qualified"/>
+					<xsd:element name="authinfo" minOccurs="0" form="qualified">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:annotation>
+									<xsd:documentation>SAP PI will pass userid and authid to PREP as in-parameters</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="userid" type="xsd:string" form="qualified" default="{userid}"/>
+								<xsd:element name="authid" type="xsd:string" form="qualified" default="{authid}"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="statusinfo" minOccurs="0" maxOccurs="unbounded" form="qualified">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:annotation>
+									<xsd:documentation>PREP will pass statuscode and statusmsg to SAP PI as out-parameters</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="statuscode" type="xsd:string" form="qualified"/>
+								<xsd:element name="statusmsg" type="xsd:string" form="qualified"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://interfaces.dong.com/services/prepoutgoing/request/payload" xmlns:prset="http://interfaces.dong.com/services/pricesets" xmlns="http://interfaces.dong.com/services/prepoutgoing/request/payload" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://interfaces.dong.com/services/pricesets"/>
+			<xsd:complexType name="price_set_requestsType">
+				<xsd:sequence>
+					<xsd:element name="price_set_request" type="price_set_requestType" maxOccurs="unbounded" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="price_set_requestType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>
+							<![CDATA[ALL PRICES:
+							You must supply either product_bid or product_shortname.
+							If you don't specify price_notation_type, PREP will respond with either Closing
+							or Mid prices.
+
+							CLOSING PRICES:
+							PREP will respond with the best available price set given priorities set in PREP.
+							If prices are missing for the highest priority, PREP will fill in these with prices
+							from the next available, given source/provider priority.
+
+							SETTLEMENT PRICES:
+							You must supply price_source also.
+							PREP will respond with prices from the requested source and the provider with the
+							highest priority. If prices are missing for the highest priority, PREP will fill in
+							these with prices from the next available, given provider priority.]]>
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="product_bid" type="xsd:positiveInteger" minOccurs="0" form="qualified"/>
+					<xsd:element name="product_shortname" type="xsd:string" minOccurs="0" form="qualified"/>
+					<xsd:element name="delivery_period" type="prset:delivery_periodType" minOccurs="0" form="qualified"/>
+					<xsd:element name="price_source" type="xsd:string" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>
+								<![CDATA[Example values:
+								ABN: ABN AMRO
+								APX: APX
+								Arg: Argus
+								BAW: BAWI
+								DB: Deutsche Bank
+								DNB: Nationalbanken
+								DS: DS
+								ECB: ECB
+								EDX: Endex
+								EEX: EEX
+								EM: DONG Energy Markets
+								ENS: ENS
+								GT: GasTerra
+								HT: Hydro Texaco
+								Her: Heren
+								ICE: ICE
+								NP: Nordpool
+								PLA: Platts
+								Q8: Q8
+								RM: GTRM
+								SCB: SCB
+								SM: Skat
+								SRB: Sveriges Riksbank
+								Shl: Shell
+								StO: Statoil
+								TFS: TFS
+								TP: Tullett-Prebon
+								UNK: Unknown]]>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="price_provider" type="xsd:string" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>
+								<![CDATA[Example values:
+								DB: Deutsche Bank
+								DRX: Dramex
+								EDX: Endex
+								END: Endur
+								FIPR: FIPRA
+								K2: K2
+								MV: MarketView
+								NP: Nordpool
+								OPM: OPM-Batch
+								ORA: Oracle
+								PLT: Platts
+								REU: Reuters
+								SAS: SAS
+								SUNG: SunGard
+								TFS: TFS
+								TP: Tullett-Prebon
+								UNK: Unknown
+								VAM: Value Measurement
+								XLOR: ExceltoORACLE]]>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="raw_flag" type="prset:raw_flagType" minOccurs="0" form="qualified">
+						<xsd:annotation>
+							<xsd:documentation>
+								<![CDATA[Y = raw prices
+								N = modelled/derived prices
+								If you specifically need raw prices you must supply raw_flag=Y
+								If not specified PREP will return either raw or modelled based
+								on the source/provider priority.]]>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="price_notation_type" type="prset:price_notation_typeType" minOccurs="0" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="price_sets_requestType">
+				<xsd:sequence>
+					<xsd:element name="changed_since" type="prset:dateTimeTZ" form="qualified" nillable="true">
+						<xsd:annotation>
+							<xsd:documentation>
+								<![CDATA[Request prices changed since a specific date and time.
+								The requesting party will keep track of the last successful
+								request and response.
+								changed_since is converted to PREP local time, so systems can
+								query using any timezone, e.g. their own local time.]]>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="notationtime" type="prset:dateTimeNoTZ" minOccurs="0" form="qualified" nillable="true">
+						<xsd:annotation>
+							<xsd:documentation>
+								<![CDATA[Filters the price sets to only include prices with the specified
+								notationtime.
+								If no notationtime is specified you will get all new/updated
+								prices since changed_since for any notationtime.
+								No timezone is specified for notationtime, as notationtime is
+								assumed to be local to the market.]]>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="price_set_requests" type="price_set_requestsType" form="qualified"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://interfaces.dong.com/services/prepoutgoing/request" xmlns:eams="http://interfaces.dong.com/services/eamsg" xmlns:popay="http://interfaces.dong.com/services/prepoutgoing/request/payload" xmlns="http://interfaces.dong.com/services/prepoutgoing/request" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://interfaces.dong.com/services/eamsg"/>
+			<xsd:import namespace="http://interfaces.dong.com/services/prepoutgoing/request/payload"/>
+			<xsd:element name="request">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="eamsgheader" type="eams:eamsgheaderType" form="qualified"/>
+						<xsd:element name="eamsgcontent" minOccurs="0" form="qualified">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:annotation>
+										<xsd:documentation>This is the payload. PREP will pass this
+										to SAP PI as a CLOB out-parameter</xsd:documentation>
+									</xsd:annotation>
+									<xsd:element name="price_sets_request" type="popay:price_sets_requestType" form="qualified"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="p2.request">
+		<wsdl:documentation/>
+		<wsdl:part name="request" element="p2:request"/>
+	</wsdl:message>
+	<wsdl:message name="p3.response">
+		<wsdl:documentation/>
+		<wsdl:part name="response" element="p3:response"/>
+	</wsdl:message>
+	<wsdl:portType name="PrepPriceSet_os">
+		<wsdl:documentation/>
+		<wsdl:operation name="RequestPriceSet">
+			<wsdl:documentation/>
+			<wsp:Policy>
+				<wsp:PolicyReference URI="#OP_RequestPriceSet"/>
+			</wsp:Policy>
+			<wsdl:input message="p1:p2.request"/>
+			<wsdl:output message="p1:p3.response"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PrepPriceSet_osBinding" type="p1:PrepPriceSet_os">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+		<wsdl:operation name="RequestPriceSet">
+			<soap:operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="XI_70c1e9525e02396cbe926b16424509f8_Service">
+		<wsdl:port name="HTTPS_Port" binding="p1:PrepPriceSet_osBinding">
+			<soap:address location="https://test.api.orsted.dk/prices/priceRepository" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
