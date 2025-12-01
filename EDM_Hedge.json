@@ -1,0 +1,5644 @@
+{
+  "variables": [
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20251101",
+      "value": "58.91369"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20251201",
+      "value": "59.83679"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260101",
+      "value": "63.62591"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260201",
+      "value": "64.00021"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260301",
+      "value": "60.94142"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260401",
+      "value": "65.78752"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260501",
+      "value": "65.84085"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260601",
+      "value": "65.34615"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260701",
+      "value": "68.6076"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260801",
+      "value": "68.70613"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20260901",
+      "value": "68.39094"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20261001",
+      "value": "53.86352"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20261101",
+      "value": "53.62202"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20261201",
+      "value": "52.59716"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270101",
+      "value": "56.17341"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270201",
+      "value": "60.97501"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270301",
+      "value": "57.53602"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270401",
+      "value": "63.3733"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270501",
+      "value": "62.98263"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270601",
+      "value": "68.55164"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270701",
+      "value": "66.58473"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270801",
+      "value": "64.38767"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20270901",
+      "value": "65.68645"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20271001",
+      "value": "55.65863"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20271101",
+      "value": "60.10012"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20271201",
+      "value": "59.25386"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280101",
+      "value": "66.92867"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280201",
+      "value": "68.93494"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280301",
+      "value": "62.7539"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280401",
+      "value": "55.2268"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280501",
+      "value": "57.72418"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280601",
+      "value": "62.42475"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280701",
+      "value": "59.82776"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280801",
+      "value": "58.17157"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20280901",
+      "value": "59.80987"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20281001",
+      "value": "56.54532"
+    },
+    {
+      "variableName": "ALL_DK1_ASK",
+      "validFrom": "20281101",
+      "value": "61.43493"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20251101",
+      "value": "61.90044"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20251201",
+      "value": "59.57549"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260101",
+      "value": "64.59616"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260201",
+      "value": "64.89556"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260301",
+      "value": "61.61274"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260401",
+      "value": "66.16037"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260501",
+      "value": "66.2136"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260601",
+      "value": "65.71878"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260701",
+      "value": "69.72217"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260801",
+      "value": "69.26479"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20260901",
+      "value": "67.83987"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20261001",
+      "value": "55.74302"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20261101",
+      "value": "54.96925"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20261201",
+      "value": "53.37859"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270101",
+      "value": "57.92949"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270201",
+      "value": "60.92294"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270301",
+      "value": "58.95684"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270401",
+      "value": "61.36082"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270501",
+      "value": "64.33972"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270601",
+      "value": "71.43347"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270701",
+      "value": "66.5996"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270801",
+      "value": "64.03422"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20270901",
+      "value": "68.2654"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20271001",
+      "value": "59.73081"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20271101",
+      "value": "63.36928"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20271201",
+      "value": "56.81706"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280101",
+      "value": "62.69072"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280201",
+      "value": "61.98545"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280301",
+      "value": "58.18595"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280401",
+      "value": "54.13876"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280501",
+      "value": "59.52879"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280601",
+      "value": "65.66983"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280701",
+      "value": "61.46494"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280801",
+      "value": "59.33725"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20280901",
+      "value": "63.53674"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20281001",
+      "value": "62.4956"
+    },
+    {
+      "variableName": "ALL_DK2_ASK",
+      "validFrom": "20281101",
+      "value": "67.06892"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20251101",
+      "value": "10.5"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20251201",
+      "value": "11.12821"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260101",
+      "value": "10.85"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260201",
+      "value": "10.88889"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260301",
+      "value": "10.83542"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260401",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260501",
+      "value": "10.58537"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260601",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260701",
+      "value": "11.12821"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260801",
+      "value": "10.58537"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20260901",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20261001",
+      "value": "10.8625"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20261101",
+      "value": "10.76923"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20261201",
+      "value": "11.12821"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270101",
+      "value": "10.58537"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270201",
+      "value": "10.88889"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270301",
+      "value": "11.11325"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270401",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270501",
+      "value": "10.58537"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270601",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270701",
+      "value": "10.85"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270801",
+      "value": "10.85"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20270901",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20271001",
+      "value": "10.59756"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20271101",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20271201",
+      "value": "11.12821"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280101",
+      "value": "10.58537"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280201",
+      "value": "10.97297"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280301",
+      "value": "11.11325"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280401",
+      "value": "10.5"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280501",
+      "value": "11.12821"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280601",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280701",
+      "value": "10.58537"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280801",
+      "value": "11.12821"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20280901",
+      "value": "10.76923"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20281001",
+      "value": "10.8625"
+    },
+    {
+      "variableName": "BASEH_DK1",
+      "validFrom": "20281101",
+      "value": "11.05263"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20251101",
+      "value": "6"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20251201",
+      "value": "6.35897"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260101",
+      "value": "6.2"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260201",
+      "value": "6.22222"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260301",
+      "value": "6.19167"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260401",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260501",
+      "value": "6.04878"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260601",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260701",
+      "value": "6.35897"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260801",
+      "value": "6.04878"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20260901",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20261001",
+      "value": "6.20833"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20261101",
+      "value": "6.15385"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20261201",
+      "value": "6.35897"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270101",
+      "value": "6.04878"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270201",
+      "value": "6.22222"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270301",
+      "value": "6.35043"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270401",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270501",
+      "value": "6.04878"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270601",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270701",
+      "value": "6.2"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270801",
+      "value": "6.2"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20270901",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20271001",
+      "value": "6.05691"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20271101",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20271201",
+      "value": "6.35897"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280101",
+      "value": "6.04878"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280201",
+      "value": "6.27027"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280301",
+      "value": "6.35043"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280401",
+      "value": "6"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280501",
+      "value": "6.35897"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280601",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280701",
+      "value": "6.04878"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280801",
+      "value": "6.35897"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20280901",
+      "value": "6.15385"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20281001",
+      "value": "6.20833"
+    },
+    {
+      "variableName": "BASEH_DK2",
+      "validFrom": "20281101",
+      "value": "6.31579"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20251101",
+      "value": "73.10076"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20251201",
+      "value": "74.80641"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260101",
+      "value": "76.76158"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260201",
+      "value": "73.94865"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260301",
+      "value": "64.22345"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260401",
+      "value": "58.4482"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260501",
+      "value": "57.26854"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260601",
+      "value": "57.83404"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260701",
+      "value": "61.87153"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260801",
+      "value": "64.69248"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20260901",
+      "value": "69.41274"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20261001",
+      "value": "62.44214"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20261101",
+      "value": "68.57568"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20261201",
+      "value": "72.30783"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270101",
+      "value": "71.89494"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270201",
+      "value": "72.71778"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270301",
+      "value": "61.9581"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270401",
+      "value": "59.71745"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270501",
+      "value": "55.40267"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270601",
+      "value": "59.49871"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270701",
+      "value": "60.87254"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270801",
+      "value": "62.69921"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20270901",
+      "value": "67.52806"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20271001",
+      "value": "59.84911"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20271101",
+      "value": "67.73106"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20271201",
+      "value": "69.90924"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280101",
+      "value": "77.36949"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280201",
+      "value": "78.46302"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280301",
+      "value": "66.86263"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280401",
+      "value": "52.52339"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280501",
+      "value": "49.55617"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280601",
+      "value": "53.82213"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280701",
+      "value": "54.8798"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280801",
+      "value": "56.6128"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20280901",
+      "value": "61.29296"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20281001",
+      "value": "60.04845"
+    },
+    {
+      "variableName": "BASE_DK1_CON",
+      "validFrom": "20281101",
+      "value": "67.07323"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20251101",
+      "value": "731.00755"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20251201",
+      "value": "748.06414"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260101",
+      "value": "767.61583"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260201",
+      "value": "739.48647"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260301",
+      "value": "642.23454"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260401",
+      "value": "584.48201"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260501",
+      "value": "572.68542"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260601",
+      "value": "578.34038"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260701",
+      "value": "618.71526"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260801",
+      "value": "646.92481"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20260901",
+      "value": "694.12741"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20261001",
+      "value": "624.42138"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20261101",
+      "value": "685.75676"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20261201",
+      "value": "723.07832"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270101",
+      "value": "718.94942"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270201",
+      "value": "727.17778"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270301",
+      "value": "619.58098"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270401",
+      "value": "597.17454"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270501",
+      "value": "554.0267"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270601",
+      "value": "594.98711"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270701",
+      "value": "608.7254"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270801",
+      "value": "626.99211"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20270901",
+      "value": "675.28061"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20271001",
+      "value": "598.49113"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20271101",
+      "value": "677.3106"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20271201",
+      "value": "699.09243"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280101",
+      "value": "773.69494"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280201",
+      "value": "784.6302"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280301",
+      "value": "668.62625"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280401",
+      "value": "525.2339"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280501",
+      "value": "495.56167"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280601",
+      "value": "538.22126"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280701",
+      "value": "548.79801"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280801",
+      "value": "566.12804"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20280901",
+      "value": "612.92957"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20281001",
+      "value": "600.48449"
+    },
+    {
+      "variableName": "BASE_DK1_DKK",
+      "validFrom": "20281101",
+      "value": "670.73234"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20251101",
+      "value": "97.9"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20251201",
+      "value": "100.2"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260101",
+      "value": "102.85"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260201",
+      "value": "99.11"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260301",
+      "value": "86.1"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260401",
+      "value": "78.38"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260501",
+      "value": "76.82"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260601",
+      "value": "77.6"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260701",
+      "value": "83.04"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260801",
+      "value": "86.85"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20260901",
+      "value": "93.21"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20261001",
+      "value": "83.87"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20261101",
+      "value": "92.13"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20261201",
+      "value": "97.16"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270101",
+      "value": "96.62"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270201",
+      "value": "97.74"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270301",
+      "value": "83.29"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270401",
+      "value": "80.29"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270501",
+      "value": "74.5"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270601",
+      "value": "80.02"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270701",
+      "value": "81.88"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270801",
+      "value": "84.35"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20270901",
+      "value": "90.86"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20271001",
+      "value": "80.54"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20271101",
+      "value": "91.16"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20271201",
+      "value": "94.1"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280101",
+      "value": "104.15"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280201",
+      "value": "105.63"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280301",
+      "value": "90.02"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280401",
+      "value": "70.72"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280501",
+      "value": "66.73"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280601",
+      "value": "72.48"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280701",
+      "value": "73.91"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280801",
+      "value": "76.25"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20280901",
+      "value": "82.56"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20281001",
+      "value": "80.89"
+    },
+    {
+      "variableName": "BASE_DK1_EUR",
+      "validFrom": "20281101",
+      "value": "90.36"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20251101",
+      "value": "76.08751"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20251201",
+      "value": "74.54511"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260101",
+      "value": "77.73183"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260201",
+      "value": "74.844"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260301",
+      "value": "64.89478"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260401",
+      "value": "58.82105"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260501",
+      "value": "57.64129"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260601",
+      "value": "58.20668"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260701",
+      "value": "62.9817"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260801",
+      "value": "65.25114"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20260901",
+      "value": "68.86167"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20261001",
+      "value": "64.32575"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20261101",
+      "value": "69.92292"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20261201",
+      "value": "73.08926"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270101",
+      "value": "73.65102"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270201",
+      "value": "72.6657"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270301",
+      "value": "63.37892"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270401",
+      "value": "57.70927"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270501",
+      "value": "56.76357"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270601",
+      "value": "62.37624"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270701",
+      "value": "60.88741"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270801",
+      "value": "62.34985"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20270901",
+      "value": "70.107"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20271001",
+      "value": "63.92129"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20271101",
+      "value": "71.00022"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20271201",
+      "value": "67.47245"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280101",
+      "value": "73.12773"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280201",
+      "value": "71.51775"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280301",
+      "value": "62.29469"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280401",
+      "value": "51.43906"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280501",
+      "value": "51.36078"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280601",
+      "value": "57.0672"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280701",
+      "value": "56.52078"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280801",
+      "value": "57.77847"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20280901",
+      "value": "65.01983"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20281001",
+      "value": "65.99465"
+    },
+    {
+      "variableName": "BASE_DK2_CON",
+      "validFrom": "20281101",
+      "value": "72.70721"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20251101",
+      "value": "760.87507"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20251201",
+      "value": "745.45114"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260101",
+      "value": "777.31832"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260201",
+      "value": "748.43999"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260301",
+      "value": "648.94779"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260401",
+      "value": "588.21053"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260501",
+      "value": "576.41287"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260601",
+      "value": "582.0668"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260701",
+      "value": "629.81697"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260801",
+      "value": "652.51138"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20260901",
+      "value": "688.61669"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20261001",
+      "value": "643.2575"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20261101",
+      "value": "699.22924"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20261201",
+      "value": "730.89257"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270101",
+      "value": "736.51018"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270201",
+      "value": "726.65699"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270301",
+      "value": "633.78917"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270401",
+      "value": "577.09269"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270501",
+      "value": "567.63568"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270601",
+      "value": "623.76242"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270701",
+      "value": "608.87408"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270801",
+      "value": "623.49849"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20270901",
+      "value": "701.06999"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20271001",
+      "value": "639.2129"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20271101",
+      "value": "710.0022"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20271201",
+      "value": "674.72449"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280101",
+      "value": "731.27729"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280201",
+      "value": "715.17747"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280301",
+      "value": "622.94694"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280401",
+      "value": "514.39056"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280501",
+      "value": "513.60775"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280601",
+      "value": "570.67196"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280701",
+      "value": "565.20775"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280801",
+      "value": "577.78471"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20280901",
+      "value": "650.1983"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20281001",
+      "value": "659.94648"
+    },
+    {
+      "variableName": "BASE_DK2_DKK",
+      "validFrom": "20281101",
+      "value": "727.07208"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20251101",
+      "value": "101.9"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20251201",
+      "value": "99.85"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260101",
+      "value": "104.15"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260201",
+      "value": "100.31"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260301",
+      "value": "87"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260401",
+      "value": "78.88"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260501",
+      "value": "77.32"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260601",
+      "value": "78.1"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260701",
+      "value": "84.53"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260801",
+      "value": "87.6"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20260901",
+      "value": "92.47"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20261001",
+      "value": "86.4"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20261101",
+      "value": "93.94"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20261201",
+      "value": "98.21"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270101",
+      "value": "98.98"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270201",
+      "value": "97.67"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270301",
+      "value": "85.2"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270401",
+      "value": "77.59"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270501",
+      "value": "76.33"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270601",
+      "value": "83.89"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270701",
+      "value": "81.9"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270801",
+      "value": "83.88"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20270901",
+      "value": "94.33"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20271001",
+      "value": "86.02"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20271101",
+      "value": "95.56"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20271201",
+      "value": "90.82"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280101",
+      "value": "98.44"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280201",
+      "value": "96.28"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280301",
+      "value": "83.87"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280401",
+      "value": "69.26"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280501",
+      "value": "69.16"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280601",
+      "value": "76.85"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280701",
+      "value": "76.12"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280801",
+      "value": "77.82"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20280901",
+      "value": "87.58"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20281001",
+      "value": "88.9"
+    },
+    {
+      "variableName": "BASE_DK2_EUR",
+      "validFrom": "20281101",
+      "value": "97.95"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20251101",
+      "value": "1.5"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20251201",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260101",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260201",
+      "value": "1.55556"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260301",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260401",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260501",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260601",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260701",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260801",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20260901",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20261001",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20261101",
+      "value": "1.53846"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20261201",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270101",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270201",
+      "value": "1.55556"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270301",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270401",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270501",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270601",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270701",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270801",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20270901",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20271001",
+      "value": "1.51219"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20271101",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20271201",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280101",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280201",
+      "value": "1.56757"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280301",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280401",
+      "value": "1.5"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280501",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280601",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280701",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280801",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20280901",
+      "value": "1.53846"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20281001",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK1",
+      "validFrom": "20281101",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20251101",
+      "value": "1.5"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20251201",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260101",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260201",
+      "value": "1.55556"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260301",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260401",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260501",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260601",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260701",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260801",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20260901",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20261001",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20261101",
+      "value": "1.53846"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20261201",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270101",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270201",
+      "value": "1.55556"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270301",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270401",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270501",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270601",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270701",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270801",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20270901",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20271001",
+      "value": "1.51219"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20271101",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20271201",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280101",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280201",
+      "value": "1.56757"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280301",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280401",
+      "value": "1.5"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280501",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280601",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280701",
+      "value": "1.5122"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280801",
+      "value": "1.58974"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20280901",
+      "value": "1.53846"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20281001",
+      "value": "1.55"
+    },
+    {
+      "variableName": "BASE_RATIO_DK2",
+      "validFrom": "20281101",
+      "value": "1.57895"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20251101",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20251201",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260101",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260201",
+      "value": "7392"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260301",
+      "value": "8173"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260401",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260501",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260601",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260701",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260801",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20260901",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20261001",
+      "value": "8194"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20261101",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20261201",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270101",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270201",
+      "value": "7392"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270301",
+      "value": "8173"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270401",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270501",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270601",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270701",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270801",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20270901",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20271001",
+      "value": "8194"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20271101",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20271201",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280101",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280201",
+      "value": "7656"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280301",
+      "value": "8173"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280401",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280501",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280601",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280701",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280801",
+      "value": "8184"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20280901",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20281001",
+      "value": "8194"
+    },
+    {
+      "variableName": "FCTS",
+      "validFrom": "20281101",
+      "value": "7920"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20251101",
+      "value": "7560"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20251201",
+      "value": "8279.38824"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260101",
+      "value": "8072.4"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260201",
+      "value": "7317.33408"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260301",
+      "value": "8061.55248"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260401",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260501",
+      "value": "7875.51528"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260601",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260701",
+      "value": "8279.38824"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260801",
+      "value": "7875.51528"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20260901",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20261001",
+      "value": "8081.7"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20261101",
+      "value": "7753.8456"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20261201",
+      "value": "8279.38824"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270101",
+      "value": "7875.51528"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270201",
+      "value": "7317.33408"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270301",
+      "value": "8268.258"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270401",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270501",
+      "value": "7875.51528"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270601",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270701",
+      "value": "8072.4"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270801",
+      "value": "8072.4"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20270901",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20271001",
+      "value": "7884.58464"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20271101",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20271201",
+      "value": "8279.38824"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280101",
+      "value": "7875.51528"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280201",
+      "value": "7637.18712"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280301",
+      "value": "8268.258"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280401",
+      "value": "7560"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280501",
+      "value": "8279.38824"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280601",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280701",
+      "value": "7875.51528"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280801",
+      "value": "8279.38824"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20280901",
+      "value": "7753.8456"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20281001",
+      "value": "8081.7"
+    },
+    {
+      "variableName": "FCT_BASE_DK1",
+      "validFrom": "20281101",
+      "value": "7957.8936"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20251101",
+      "value": "4320"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20251201",
+      "value": "4731.07368"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260101",
+      "value": "4612.8"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260201",
+      "value": "4181.33184"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260301",
+      "value": "4606.60248"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260401",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260501",
+      "value": "4500.29232"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260601",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260701",
+      "value": "4731.07368"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260801",
+      "value": "4500.29232"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20260901",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20261001",
+      "value": "4618.99752"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20261101",
+      "value": "4430.772"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20261201",
+      "value": "4731.07368"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270101",
+      "value": "4500.29232"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270201",
+      "value": "4181.33184"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270301",
+      "value": "4724.71992"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270401",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270501",
+      "value": "4500.29232"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270601",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270701",
+      "value": "4612.8"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270801",
+      "value": "4612.8"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20270901",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20271001",
+      "value": "4506.34104"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20271101",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20271201",
+      "value": "4731.07368"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280101",
+      "value": "4500.29232"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280201",
+      "value": "4364.10792"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280301",
+      "value": "4724.71992"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280401",
+      "value": "4320"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280501",
+      "value": "4731.07368"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280601",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280701",
+      "value": "4500.29232"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280801",
+      "value": "4731.07368"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20280901",
+      "value": "4430.772"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20281001",
+      "value": "4618.99752"
+    },
+    {
+      "variableName": "FCT_BASE_DK2",
+      "validFrom": "20281101",
+      "value": "4547.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20251101",
+      "value": "-2520"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20251201",
+      "value": "-3071.38824"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260101",
+      "value": "-2864.4"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260201",
+      "value": "-2613.33408"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260301",
+      "value": "-2860.55248"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260401",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260501",
+      "value": "-2667.51528"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260601",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260701",
+      "value": "-3071.38824"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260801",
+      "value": "-2667.51528"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20260901",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20261001",
+      "value": "-2867.7"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20261101",
+      "value": "-2713.8456"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20261201",
+      "value": "-3071.38824"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270101",
+      "value": "-2667.51528"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270201",
+      "value": "-2613.33408"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270301",
+      "value": "-3067.258"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270401",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270501",
+      "value": "-2667.51528"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270601",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270701",
+      "value": "-2864.4"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270801",
+      "value": "-2864.4"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20270901",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20271001",
+      "value": "-2670.58464"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20271101",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20271201",
+      "value": "-3071.38824"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280101",
+      "value": "-2667.51528"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280201",
+      "value": "-2765.18712"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280301",
+      "value": "-3067.258"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280401",
+      "value": "-2520"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280501",
+      "value": "-3071.38824"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280601",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280701",
+      "value": "-2667.51528"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280801",
+      "value": "-3071.38824"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20280901",
+      "value": "-2713.8456"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20281001",
+      "value": "-2867.7"
+    },
+    {
+      "variableName": "FCT_PEAK_DK1",
+      "validFrom": "20281101",
+      "value": "-2917.8936"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20251101",
+      "value": "-1440"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20251201",
+      "value": "-1755.07368"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260101",
+      "value": "-1636.8"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260201",
+      "value": "-1493.33184"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260301",
+      "value": "-1634.60248"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260401",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260501",
+      "value": "-1524.29232"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260601",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260701",
+      "value": "-1755.07368"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260801",
+      "value": "-1524.29232"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20260901",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20261001",
+      "value": "-1638.99752"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20261101",
+      "value": "-1550.772"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20261201",
+      "value": "-1755.07368"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270101",
+      "value": "-1524.29232"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270201",
+      "value": "-1493.33184"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270301",
+      "value": "-1752.71992"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270401",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270501",
+      "value": "-1524.29232"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270601",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270701",
+      "value": "-1636.8"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270801",
+      "value": "-1636.8"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20270901",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20271001",
+      "value": "-1526.34104"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20271101",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20271201",
+      "value": "-1755.07368"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280101",
+      "value": "-1524.29232"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280201",
+      "value": "-1580.10792"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280301",
+      "value": "-1752.71992"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280401",
+      "value": "-1440"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280501",
+      "value": "-1755.07368"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280601",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280701",
+      "value": "-1524.29232"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280801",
+      "value": "-1755.07368"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20280901",
+      "value": "-1550.772"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20281001",
+      "value": "-1638.99752"
+    },
+    {
+      "variableName": "FCT_PEAK_DK2",
+      "validFrom": "20281101",
+      "value": "-1667.3688"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20251101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20251201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260201",
+      "value": "4704"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20260901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20261001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20261101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20261201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270201",
+      "value": "4704"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20270901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20271001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20271101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20271201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280201",
+      "value": "4872"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20280901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20281001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_M_DK1",
+      "validFrom": "20281101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20251101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20251201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260201",
+      "value": "2688"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20260901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20261001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20261101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20261201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270201",
+      "value": "2688"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20270901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20271001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20271101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20271201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280201",
+      "value": "2784"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20280901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20281001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_M_DK2",
+      "validFrom": "20281101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20251101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20251201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260201",
+      "value": "4704"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20260901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20261001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20261101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20261201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270201",
+      "value": "4704"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20270901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20271001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20271101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20271201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280201",
+      "value": "4872"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20280901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20281001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_OP_DK1",
+      "validFrom": "20281101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20251101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20251201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260201",
+      "value": "2688"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20260901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20261001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20261101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20261201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270201",
+      "value": "2688"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20270901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20271001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20271101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20271201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280201",
+      "value": "2784"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20280901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20281001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_OP_DK2",
+      "validFrom": "20281101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20251101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20251201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260201",
+      "value": "4704"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20260901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20261001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20261101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20261201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270201",
+      "value": "4704"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20270901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20271001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20271101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20271201",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280101",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280201",
+      "value": "4872"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280301",
+      "value": "5201"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280401",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280501",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280601",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280701",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280801",
+      "value": "5208"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20280901",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20281001",
+      "value": "5214"
+    },
+    {
+      "variableName": "FC_P_DK1",
+      "validFrom": "20281101",
+      "value": "5040"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20251101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20251201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260201",
+      "value": "2688"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20260901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20261001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20261101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20261201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270201",
+      "value": "2688"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20270901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20271001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20271101",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20271201",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280101",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280201",
+      "value": "2784"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280301",
+      "value": "2972"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280401",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280501",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280601",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280701",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280801",
+      "value": "2976"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20280901",
+      "value": "2880"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20281001",
+      "value": "2980"
+    },
+    {
+      "variableName": "FC_P_DK2",
+      "validFrom": "20281101",
+      "value": "2880"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20251101",
+      "value": "101.4749"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20251201",
+      "value": "100.18983"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260101",
+      "value": "100.64462"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260201",
+      "value": "91.8557"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260301",
+      "value": "70.19079"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260401",
+      "value": "45.77125"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260501",
+      "value": "40.53229"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260601",
+      "value": "44.85864"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260701",
+      "value": "50.44944"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260801",
+      "value": "56.85639"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20260901",
+      "value": "71.17766"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20261001",
+      "value": "78.03964"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20261101",
+      "value": "96.34685"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20261201",
+      "value": "105.73048"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270101",
+      "value": "102.58907"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270201",
+      "value": "93.85459"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270301",
+      "value": "69.45645"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270401",
+      "value": "53.40283"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270501",
+      "value": "40.60384"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270601",
+      "value": "43.8619"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270701",
+      "value": "50.48674"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270801",
+      "value": "59.62929"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20270901",
+      "value": "70.709"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20271001",
+      "value": "68.03062"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20271101",
+      "value": "80.91172"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20271201",
+      "value": "87.97718"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280101",
+      "value": "97.75374"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280201",
+      "value": "95.25053"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280301",
+      "value": "73.82965"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280401",
+      "value": "47.11657"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280501",
+      "value": "35.70599"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280601",
+      "value": "38.96312"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280701",
+      "value": "45.21959"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280801",
+      "value": "53.96964"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20280901",
+      "value": "64.04728"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20281001",
+      "value": "66.41779"
+    },
+    {
+      "variableName": "PEAK_DK1_CON",
+      "validFrom": "20281101",
+      "value": "76.81207"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20251101",
+      "value": "1014.74899"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20251201",
+      "value": "1001.89828"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260101",
+      "value": "1006.44623"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260201",
+      "value": "918.55695"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260301",
+      "value": "701.9079"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260401",
+      "value": "457.7125"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260501",
+      "value": "405.32291"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260601",
+      "value": "448.58644"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260701",
+      "value": "504.49435"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260801",
+      "value": "568.56385"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20260901",
+      "value": "711.77661"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20261001",
+      "value": "780.39643"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20261101",
+      "value": "963.46852"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20261201",
+      "value": "1057.30483"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270101",
+      "value": "1025.89067"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270201",
+      "value": "938.54591"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270301",
+      "value": "694.56449"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270401",
+      "value": "534.0283"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270501",
+      "value": "406.03836"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270601",
+      "value": "438.61897"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270701",
+      "value": "504.86739"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270801",
+      "value": "596.29291"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20270901",
+      "value": "707.08999"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20271001",
+      "value": "680.30622"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20271101",
+      "value": "809.1172"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20271201",
+      "value": "879.77179"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280101",
+      "value": "977.53737"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280201",
+      "value": "952.50526"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280301",
+      "value": "738.29648"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280401",
+      "value": "471.16571"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280501",
+      "value": "357.05987"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280601",
+      "value": "389.6312"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280701",
+      "value": "452.1959"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280801",
+      "value": "539.69635"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20280901",
+      "value": "640.47279"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20281001",
+      "value": "664.17786"
+    },
+    {
+      "variableName": "PEAK_DK1_DKK",
+      "validFrom": "20281101",
+      "value": "768.12066"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20251101",
+      "value": "104.46165"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20251201",
+      "value": "99.92853"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260101",
+      "value": "101.61487"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260201",
+      "value": "92.75105"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260301",
+      "value": "70.86212"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260401",
+      "value": "46.1441"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260501",
+      "value": "40.90504"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260601",
+      "value": "45.23129"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260701",
+      "value": "51.55215"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260801",
+      "value": "57.41504"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20260901",
+      "value": "70.62659"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20261001",
+      "value": "79.9307"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20261101",
+      "value": "97.6941"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20261201",
+      "value": "106.51191"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270101",
+      "value": "104.34514"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270201",
+      "value": "93.80251"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270301",
+      "value": "70.87727"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270401",
+      "value": "51.40208"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270501",
+      "value": "41.97217"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270601",
+      "value": "46.73199"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270701",
+      "value": "50.50161"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270801",
+      "value": "59.28736"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20270901",
+      "value": "73.28794"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20271001",
+      "value": "72.1028"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20271101",
+      "value": "84.18088"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20271201",
+      "value": "85.54039"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280101",
+      "value": "93.50454"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280201",
+      "value": "88.31268"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280301",
+      "value": "69.26172"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280401",
+      "value": "46.03966"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280501",
+      "value": "37.5106"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280601",
+      "value": "42.20819"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280701",
+      "value": "46.86799"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280801",
+      "value": "55.1353"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20280901",
+      "value": "67.77415"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20281001",
+      "value": "72.35656"
+    },
+    {
+      "variableName": "PEAK_DK2_CON",
+      "validFrom": "20281101",
+      "value": "82.44604"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20251101",
+      "value": "1044.61651"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20251201",
+      "value": "999.28528"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260101",
+      "value": "1016.14872"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260201",
+      "value": "927.51047"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260301",
+      "value": "708.62115"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260401",
+      "value": "461.44102"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260501",
+      "value": "409.05036"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260601",
+      "value": "452.31286"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260701",
+      "value": "515.52154"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260801",
+      "value": "574.15042"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20260901",
+      "value": "706.26589"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20261001",
+      "value": "799.30701"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20261101",
+      "value": "976.941"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20261201",
+      "value": "1065.11908"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270101",
+      "value": "1043.45143"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270201",
+      "value": "938.02511"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270301",
+      "value": "708.77268"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270401",
+      "value": "514.02083"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270501",
+      "value": "419.7217"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270601",
+      "value": "467.31992"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270701",
+      "value": "505.01607"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270801",
+      "value": "592.87363"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20270901",
+      "value": "732.87938"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20271001",
+      "value": "721.02799"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20271101",
+      "value": "841.8088"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20271201",
+      "value": "855.40385"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280101",
+      "value": "935.04543"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280201",
+      "value": "883.12681"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280301",
+      "value": "692.61717"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280401",
+      "value": "460.39663"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280501",
+      "value": "375.10595"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280601",
+      "value": "422.0819"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280701",
+      "value": "468.67989"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280801",
+      "value": "551.35302"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20280901",
+      "value": "677.74152"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20281001",
+      "value": "723.56562"
+    },
+    {
+      "variableName": "PEAK_DK2_DKK",
+      "validFrom": "20281101",
+      "value": "824.46039"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20251101",
+      "value": "114.13127"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20251201",
+      "value": "118.50734"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260101",
+      "value": "120.48434"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260201",
+      "value": "116.42433"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260301",
+      "value": "100.58691"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260401",
+      "value": "92.8755"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260501",
+      "value": "87.16516"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260601",
+      "value": "91.90544"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260701",
+      "value": "100.12453"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260801",
+      "value": "98.67277"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20260901",
+      "value": "108.72913"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20261001",
+      "value": "99.70491"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20261101",
+      "value": "107.57362"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20261201",
+      "value": "116.19292"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270101",
+      "value": "111.37507"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270201",
+      "value": "113.03586"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270301",
+      "value": "100.756"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270401",
+      "value": "91.12005"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270501",
+      "value": "85.83787"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270601",
+      "value": "98.48896"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270701",
+      "value": "94.37549"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270801",
+      "value": "96.64227"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20270901",
+      "value": "110.69545"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20271001",
+      "value": "96.66114"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20271101",
+      "value": "112.1058"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20271201",
+      "value": "107.26365"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280101",
+      "value": "110.58375"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280201",
+      "value": "112.10908"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280301",
+      "value": "99.03236"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280401",
+      "value": "77.15859"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280501",
+      "value": "81.65029"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280601",
+      "value": "90.10626"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280701",
+      "value": "85.47072"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280801",
+      "value": "91.85274"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20280901",
+      "value": "100.03041"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20281001",
+      "value": "102.29171"
+    },
+    {
+      "variableName": "T1",
+      "validFrom": "20281101",
+      "value": "114.80105"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20251101",
+      "value": "-0.5"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20251201",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260101",
+      "value": "-0.55"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260201",
+      "value": "-0.55556"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260301",
+      "value": "-0.55"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260401",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260501",
+      "value": "-0.5122"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260601",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260701",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260801",
+      "value": "-0.5122"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20260901",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20261001",
+      "value": "-0.55"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20261101",
+      "value": "-0.53846"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20261201",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270101",
+      "value": "-0.5122"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270201",
+      "value": "-0.55556"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270301",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270401",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270501",
+      "value": "-0.5122"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270601",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270701",
+      "value": "-0.55"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270801",
+      "value": "-0.55"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20270901",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20271001",
+      "value": "-0.51219"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20271101",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20271201",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280101",
+      "value": "-0.5122"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280201",
+      "value": "-0.56757"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280301",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280401",
+      "value": "-0.5"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280501",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280601",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280701",
+      "value": "-0.5122"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280801",
+      "value": "-0.58974"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20280901",
+      "value": "-0.53846"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20281001",
+      "value": "-0.55"
+    },
+    {
+      "variableName": "T2",
+      "validFrom": "20281101",
+      "value": "-0.57895"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20251101",
+      "value": "-52.23083"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20251201",
+      "value": "-58.93185"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260101",
+      "value": "-55.88818"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260201",
+      "value": "-51.52877"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260301",
+      "value": "-38.97417"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260401",
+      "value": "-26.71513"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260501",
+      "value": "-20.95156"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260601",
+      "value": "-26.18666"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260701",
+      "value": "-30.40236"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260801",
+      "value": "-29.40798"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20260901",
+      "value": "-40.88926"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20261001",
+      "value": "-43.96189"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20261101",
+      "value": "-52.60437"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20261201",
+      "value": "-62.81433"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270101",
+      "value": "-53.44558"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270201",
+      "value": "-52.11292"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270301",
+      "value": "-41.79916"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270401",
+      "value": "-29.75923"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270501",
+      "value": "-21.49815"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270601",
+      "value": "-27.05549"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270701",
+      "value": "-27.77589"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270801",
+      "value": "-32.60805"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20270901",
+      "value": "-42.43005"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20271001",
+      "value": "-36.93033"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20271101",
+      "value": "-48.73652"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20271201",
+      "value": "-50.44659"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280101",
+      "value": "-47.89303"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280201",
+      "value": "-50.12363"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280301",
+      "value": "-40.84641"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280401",
+      "value": "-23.01983"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280501",
+      "value": "-22.1215"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280601",
+      "value": "-24.43643"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280701",
+      "value": "-24.00578"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280801",
+      "value": "-32.51549"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20280901",
+      "value": "-36.49367"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20281001",
+      "value": "-39.79611"
+    },
+    {
+      "variableName": "T3",
+      "validFrom": "20281101",
+      "value": "-47.73213"
+    },
+    {
+      "variableName": "TOT_FC_M",
+      "validFrom": "20251101",
+      "value": "297261"
+    },
+    {
+      "variableName": "TOT_FC_M_DK1",
+      "validFrom": "20251101",
+      "value": "189165"
+    },
+    {
+      "variableName": "TOT_FC_M_DK2",
+      "validFrom": "20251101",
+      "value": "108096"
+    },
+    {
+      "variableName": "WA_CP_DK1",
+      "validFrom": "20251101",
+      "value": "61.62782"
+    },
+    {
+      "variableName": "WA_CP_DK2",
+      "validFrom": "20251101",
+      "value": "62.45308"
+    },
+    {
+      "variableName": "WA_EPAD_DK1_ASK",
+      "validFrom": "20251101",
+      "value": "44.70538"
+    },
+    {
+      "variableName": "WA_EPAD_DK2_ASK",
+      "validFrom": "20251101",
+      "value": "45.81551"
+    },
+    {
+      "variableName": "WA_GO_BIOMASS",
+      "validFrom": "20251101",
+      "value": "1.04673"
+    },
+    {
+      "variableName": "WA_GO_EU_WIND",
+      "validFrom": "20251101",
+      "value": "1.08862"
+    },
+    {
+      "variableName": "WA_GO_RENEW_1",
+      "validFrom": "20251101",
+      "value": "1.04673"
+    },
+    {
+      "variableName": "WA_GO_RENEW_2",
+      "validFrom": "20251101",
+      "value": "1.08862"
+    },
+    {
+      "variableName": "WA_IMB_FEE_DK1",
+      "validFrom": "20251101",
+      "value": "0.7877"
+    },
+    {
+      "variableName": "WA_IMB_FEE_DK2",
+      "validFrom": "20251101",
+      "value": "0.53096"
+    },
+    {
+      "variableName": "WA_NORDP_AN_FEE",
+      "validFrom": "20251101",
+      "value": "0.004"
+    },
+    {
+      "variableName": "WA_NORDP_TR_FEE",
+      "validFrom": "20251101",
+      "value": "0.04"
+    },
+    {
+      "variableName": "WA_PEAK_DK1_ASK",
+      "validFrom": "20251101",
+      "value": "93.23036"
+    },
+    {
+      "variableName": "WA_PEAK_DK2_ASK",
+      "validFrom": "20251101",
+      "value": "94.3413"
+    },
+    {
+      "variableName": "WA_SYSTEM_ASK",
+      "validFrom": "20251101",
+      "value": "41.82423"
+    }
+  ]
+}
