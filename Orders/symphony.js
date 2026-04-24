@@ -1,43 +1,30 @@
-
-function isProRataLiability(facts) {
-    if (!facts || !facts.cartitem) return false;
-
-    for (var i = 0; i < facts.cartitem.length; i++) {
-        var families = facts.cartitem[i].families || [];
-        for (var j = 0; j < families.length; j++) {
-            var attrs = families[j].attributes || [];
-            for (var k = 0; k < attrs.length; k++) {
-                var a = attrs[k];
-                if (a && a.name && a.name.toLowerCase() === 'propataliability') {
-                    var v = (a.value != null) ? String(a.value).toLowerCase() : '';
-                    return v === 'true';
-                }
-            }
-        }
-    }
-    return false;
+when {
+    CTX: contextdata;
+    root_cartitem: cartitem(root_cartitem.vid === CTX.currentrootvid);
+    conf: configuration;
 }
+then {
+
+    let Contract_QandY_family;
+    let Contract_Quantity_source;
+
+    const configurations = getFacts(configuration) || [];
+    const configurationFact = configurations.length > 0 ? configurations[0] : null;
 
 
-function isSpecialTaxCondition(facts) {
-    if (!facts || !facts.cartitem) return false;
+    // get the correct family
+    Contract_QandY_family = root_cartitem.families.find(f => f.name === 'Contract Quantity and Year');
 
-    for (var i = 0; i < facts.cartitem.length; i++) {
-        var families = facts.cartitem[i].families || [];
-        for (var j = 0; j < families.length; j++) {
-            var attrs = families[j].attributes || [];
-            for (var k = 0; k < attrs.length; k++) {
-                var a = attrs[k];
-                if (a && a.name && a.name.toLowerCase() === 'special tax condition') {
-                    var v = (a.value != null) ? String(a.value).toLowerCase() : '';
-                    return v === 'true';
-                }
-            }
-        }
+    // find the attribute inside the same family
+    if (Contract_QandY_family) {
+        Contract_Quantity_source = Contract_QandY_family.attributes.find(a => a.name === 'Contract Quantity/volume');
     }
-    return false;
+
+    if (configurationFact) {
+
+        modify(configurationFact, function () {
+            configurationFact.totalvolumeconsumption = Contract_Quantity_source.value;
+        });
+    }
+
 }
-
-
-var hasProRataLiability = hasProRataLiability(initial_facts);
-var hasTaxExemption = hasSpecialTaxCondition(initial_facts);
