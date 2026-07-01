@@ -1,0 +1,1361 @@
+# Scan2BIM Inshelter — Cloud Infrastructure & MVP Deployment Guide
+
+ 
+
+> **Who is this for?** Everyone — from a project manager who needs the big picture, to a developer setting up a local environment, to a cloud architect designing production. Each section starts simple and goes deeper.
+
+ 
+
+---
+
+ 
+
+## What Does This System Do? (The 30-Second Version)
+
+ 
+
+Imagine you walk into a telecom equipment room and take a 3D laser scan. That scan (an E57 file, usually 1-5 GB) gets uploaded to our platform. Our system then:
+
+ 
+
+1. **Understands** what's in the scan (walls, doors, racks, batteries, cables)
+
+2. **Measures** everything precisely (dimensions, positions, orientations)
+
+3. **Creates** a digital building model (IFC file) that architects and engineers can use
+
+ 
+
+This happens automatically, without human intervention, in about 30-90 minutes.
+
+ 
+
+---
+
+ 
+
+## The Simple Picture
+
+ 
+
+```
+
+    📱 User uploads scan          ☁️ Cloud does the work           📐 User gets BIM model
+
+    ─────────────────────────────────────────────────────────────────────────────────────
+
+   
+
+    [E57 File] ──upload──▶ [ESDT Portal] ──webhook──▶ [Our System] ──delivers──▶ [IFC File]
+
+                                                           │
+
+                                                           ▼
+
+                                                    ┌─────────────┐
+
+                                                    │ 3 Services  │
+
+                                                    │ working in  │
+
+                                                    │ sequence    │
+
+                                                    └─────────────┘
+
+                                                   
+
+    Service 1: "Brain"         = Root Microservice (coordinates everything)
+
+    Service 2: "Eyes"          = Segmentation (identifies objects using AI)
+
+    Service 3: "Hands"         = Post-Processing (measures & builds the model)
+
+```
+
+ 
+
+---
+
+ 
+
+## Table of Contents
+
+ 
+
+1. [Infrastructure at a Glance](#1-infrastructure-at-a-glance)
+
+2. [What Each Cloud Service Does (Plain English)](#2-what-each-cloud-service-does-plain-english)
+
+3. [Full Production Infrastructure](#3-full-production-infrastructure)
+
+4. [MVP Plan (Low-Moderate Cost)](#4-mvp-plan-low-moderate-cost)
+
+5. [Step-by-Step: How Data Flows Through Infrastructure](#5-step-by-step-how-data-flows-through-infrastructure)
+
+6. [Security Model](#6-security-model)
+
+7. [Cost Breakdown & Comparison](#7-cost-breakdown--comparison)
+
+8. [Environments & Scaling Path](#8-environments--scaling-path)
+
+9. [What Could Go Wrong (and How We Handle It)](#9-what-could-go-wrong-and-how-we-handle-it)
+
+10. [Glossary](#10-glossary)
+
+ 
+
+---
+
+ 
+
+## 1. Infrastructure at a Glance
+
+ 
+
+### The Complete Shopping List
+
+ 
+
+Think of building this system like building a restaurant. You need:
+
+ 
+
+| What You Need | Restaurant Analogy | Cloud Service | Why |
+
+|---------------|-------------------|---------------|-----|
+
+| **Kitchen space** | The building itself | Azure Kubernetes Service (AKS) | Runs our 3 services |
+
+| **A special oven** | Industrial pizza oven | GPU Virtual Machine | AI needs special hardware |
+
+| **Message board** | Order tickets between kitchen stations | Azure Service Bus | Services talk to each other |
+
+| **Cold storage** | Walk-in fridge | Azure Blob Storage | Stores large scan files |
+
+| **Recipe book** | Written recipes on the wall | MongoDB Database | Remembers what's been ordered |
+
+| **Head chef** | Expeditor calling orders | Temporal Workflow Engine | Keeps everything in order |
+
+| **ID badges** | Staff verification | Azure Managed Identity + Cognito | Proves "you're allowed to do this" |
+
+| **Front door** | Restaurant entrance | NGINX Ingress + DNS | How the outside world reaches us |
+
+| **Delivery system** | Deployment pipeline | Flux CD (GitOps) | Automatically updates the kitchen |
+
+| **Container images** | Recipe library | Azure Container Registry | Stores our application packages |
+
+ 
+
+---
+
+ 
+
+## 2. What Each Cloud Service Does (Plain English)
+
+ 
+
+### Azure Kubernetes Service (AKS) — "The Platform"
+
+ 
+
+**What it is:** A managed container orchestration platform. Think of it as a smart server farm that automatically runs our applications in Docker containers.
+
+ 
+
+**Why we need it:** Our 3 microservices need to run 24/7, restart if they crash, scale up when busy, and communicate securely. AKS handles all of this.
+
+ 
+
+**Key details:**
+
+- Runs in Azure (Microsoft's cloud)
+
+- Has TWO types of servers:
+
+  - **Standard servers** — for the "Brain" (Root MS) and "Hands" (Post-Processing) — just regular CPUs
+
+  - **GPU servers** — for the "Eyes" (Segmentation) — has an NVIDIA graphics card for AI processing
+
+- The GPU servers can turn OFF when there's no work (saves money!)
+
+- Everything runs in a private namespace called `esdt-s2b`
+
+ 
+
+---
+
+ 
+
+### Azure Service Bus — "The Message Board"
+
+ 
+
+**What it is:** A cloud message queue. When Service A has a job for Service B, it posts a message to the queue. Service B picks it up when ready.
+
+ 
+
+**Why we need it:** Our services don't call each other directly. Instead, they leave messages for each other. This means:
+
+- If the Segmentation service is busy, messages wait safely in the queue
+
+- If a service crashes, the message isn't lost — it gets reprocessed
+
+- We can scale services independently
+
+ 
+
+**The queues we use:**
+
+ 
+
+```
+
+┌─────────────────────────────┐
+
+│     esdt-s2b-root-queue     │  ← Root MS reads status updates here
+
+├─────────────────────────────┤
+
+│  esdt-s2b-segmentation-queue│  ← Segmentation picks up scan jobs here
+
+├─────────────────────────────┤
+
+│ esdt-s2b-post-processing-q  │  ← Post-Processing picks up geometry jobs here
+
+└─────────────────────────────┘
+
+ 
+
+Each queue also has a "dead letter" queue — like a reject pile for messages
+
+that failed too many times (humans review these)
+
+```
+
+ 
+
+---
+
+ 
+
+### Azure Blob Storage — "The File Cabinet"
+
+ 
+
+**What it is:** Unlimited file storage in the cloud. Like a massive hard drive that never fills up.
+
+ 
+
+**Why we need it:** We deal with LARGE files:
+
+- Input E57 scans: 1-5 GB each
+
+- Segmented point clouds: 100 MB - 1 GB per scan
+
+- Output IFC models: 5-50 MB each
+
+- Extracted images: 50-200 MB per scan
+
+ 
+
+**How files flow:**
+
+ 
+
+```
+
+User uploads E57 → [Blob Storage]
+
+                         ↓ (Segmentation downloads it)
+
+Segmentation creates PLY files → [Blob Storage]
+
+                         ↓ (Post-Processing downloads them)
+
+Post-Processing creates IFC → [Blob Storage] (backup)
+
+                            → [DataRepo] (primary delivery to user)
+
+```
+
+ 
+
+---
+
+ 
+
+### MongoDB Atlas — "The Notebook"
+
+ 
+
+**What it is:** A cloud-hosted document database. Stores structured data (like JSON documents).
+
+ 
+
+**Why we need it:** The system needs to remember:
+
+- Which scans are being processed right now (workflow state)
+
+- Which step each scan is on (activity tracking)
+
+- Whether a scan was already processed (prevents duplicate work)
+
+- Application logs for debugging
+
+ 
+
+**It's NOT used for:** Storing the actual scan files (that's Blob Storage)
+
+ 
+
+---
+
+ 
+
+### Temporal — "The Project Manager"
+
+ 
+
+**What it is:** A workflow orchestration engine. It keeps track of multi-step processes that can take hours and might fail partway through.
+
+ 
+
+**Why we need it:** Processing a scan takes 30-90 minutes across 3 services. Without Temporal:
+
+- If the Root MS crashes mid-process, we'd lose track of where we were
+
+- If the GPU server is slow, we'd have no way to "wait" for it
+
+- If something fails, we'd have no automatic retry logic
+
+ 
+
+**How it works:** Temporal stores the workflow state durably. Even if our code crashes and restarts, Temporal remembers "we were at Step 2, waiting for segmentation to finish" and resumes from there.
+
+ 
+
+---
+
+ 
+
+### AWS Cognito — "The VIP Pass"
+
+ 
+
+**What it is:** An authentication service from Amazon Web Services. It issues security tokens (like temporary passwords) for machine-to-machine communication.
+
+ 
+
+**Why we need it:** When our Post-Processing service needs to upload an IFC file to the DataRepo (a different system), it needs to prove it's authorized. Cognito provides a temporary access token that lasts 1 hour.
+
+ 
+
+**Why AWS and not Azure?** The DataRepo system (built by another team) uses AWS Cognito. We don't control that choice — we just integrate with it.
+
+ 
+
+---
+
+ 
+
+### NVIDIA GPU — "The AI Brain"
+
+ 
+
+**What it is:** A specialized processor (graphics card) designed for AI/ML computations. It can process millions of 3D points simultaneously.
+
+ 
+
+**Why we need it:** The segmentation step uses a deep learning model (neural network) to classify every point in the scan. A regular CPU would take hours; a GPU does it in minutes.
+
+ 
+
+**Specifics:**
+
+- Model: NVIDIA A100 (or T4/V100 for lower cost)
+
+- Memory: Up to 200 GB needed for large scans
+
+- Cost: The most expensive part of the infrastructure (~$2,400-$7,200/month if always on)
+
+- Optimization: KEDA scales GPU servers to ZERO when no scans are waiting
+
+ 
+
+---
+
+ 
+
+## 3. Full Production Infrastructure
+
+ 
+
+### Architecture Diagram (Text)
+
+ 
+
+```
+
+═══════════════════════════════════════════════════════════════════════════════════
+
+                        PRODUCTION INFRASTRUCTURE
+
+═══════════════════════════════════════════════════════════════════════════════════
+
+ 
+
+     INTERNET                          AZURE CLOUD
+
+    ──────────                    ─────────────────────────────────────────────────
+
+                                 │
+
+    [User/Portal] ───HTTPS───▶  │  [NGINX Ingress] ──TLS──▶ [AKS Cluster]
+
+                                 │       │                      │
+
+                                 │       │ cert-manager          ├── Standard Nodes (2-5)
+
+                                 │       │ (auto TLS)           │   ├── Root MS (×1)
+
+                                 │       │                      │   ├── Post-Processing MS (×1)
+
+                                 │       ▼                      │   ├── Temporal (×7 pods)
+
+                                 │  [Azure DNS]                 │   └── Flux CD, KEDA, NGINX
+
+                                 │  *.sitedigitaltwin...        │
+
+                                 │                              ├── GPU Nodes (0-5, on-demand)
+
+                                 │                              │   └── Segmentation MS (×0-5)
+
+                                 │                              │       └── NVIDIA A100 GPU
+
+                                 │                              │
+
+                                 │  [Azure Service Bus]  ◀─────┤── queues (root, seg, pp)
+
+                                 │  Premium tier                │
+
+                                 │                              │
+
+                                 │  [Azure Blob Storage] ◀─────┤── file read/write
+
+                                 │  Hot tier, 1-5 TB            │
+
+                                 │                              │
+
+                                 │  [Azure Container Registry]──┤── pull images on deploy
+
+                                 │  esdtcommonacr               │
+
+                                 │                              │
+
+                                 │  [Azure Key Vault]───────────┤── SOPS secret decryption
+
+                                 │                              │
+
+                                 ├──────────────────────────────┘
+
+                                 │
+
+                                 │  [MongoDB Atlas] ◀── Private Link ── AKS
+
+                                 │  3-node replica set
+
+                                 │
+
+    ─────────────────────────────┼─────────────────────────────────────────────────
+
+                                 │
+
+         AWS CLOUD               │
+
+    ─────────────────────        │
+
+    [AWS Cognito] ◀──────────────┤── Token request (client_credentials)
+
+    User Pool (M2M auth)         │
+
+                                 │
+
+    ─────────────────────────────┼─────────────────────────────────────────────────
+
+                                 │
+
+    ESDT PLATFORM                │
+
+    ─────────────────────        │
+
+    [DataRepo API] ◀─────────────┤── Upload IFC (via Cognito token + SAS URL)
+
+    [ESDT Portal] ──webhook──────┤── Triggers pipeline (E57 upload notification)
+
+                                 │
+
+═══════════════════════════════════════════════════════════════════════════════════
+
+```
+
+ 
+
+### Production Specifications
+
+ 
+
+| Component | Spec | Monthly Cost (est.) |
+
+|-----------|------|-------------------|
+
+| AKS Standard Nodes | 2× Standard_D8s_v3 (8 vCPU, 32 GB) | ~$560 |
+
+| AKS GPU Nodes | 1× Standard_NC24ads_A100 (24 vCPU, 220 GB, A100 GPU) | ~$2,400-$7,200 |
+
+| Azure Service Bus | Premium, 1 Messaging Unit | ~$680 |
+
+| Azure Blob Storage | Hot, 2 TB, GRS redundancy | ~$90 |
+
+| MongoDB Atlas | M30 Dedicated, 3 replicas | ~$400 |
+
+| Azure Container Registry | Premium (geo-replicated) | ~$167 |
+
+| Azure Key Vault | Standard tier | ~$5 |
+
+| Temporal (self-hosted) | Included in AKS nodes (7 pods) | ~$0 (uses AKS) |
+
+| KEDA (self-hosted) | Included in AKS nodes | ~$0 (uses AKS) |
+
+| DNS + TLS certificates | Azure DNS + cert-manager | ~$5 |
+
+| Network egress (~1 TB) | Standard rates | ~$87 |
+
+| **TOTAL (Production)** | | **~$4,400 - $9,200/month** |
+
+ 
+
+---
+
+ 
+
+## 4. MVP Plan (Low-Moderate Cost)
+
+ 
+
+### Philosophy
+
+ 
+
+The MVP (Minimum Viable Product) plan is designed to:
+
+- ✅ Run the full pipeline end-to-end
+
+- ✅ Process 5-10 scans per day
+
+- ✅ Stay under $2,000/month
+
+- ✅ Be upgradeable to production without redesign
+
+- ⚠️ Trade-off: longer processing times, no redundancy, single region
+
+ 
+
+### MVP Architecture
+
+ 
+
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+
+                         MVP INFRASTRUCTURE (~$1,500-$2,000/month)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ 
+
+    AKS Cluster (1 standard node + 1 GPU node on-demand)
+
+    ├── Standard Node: Standard_D4s_v3 (4 vCPU, 16 GB) [$140/mo]
+
+    │   ├── Root MS (1 replica)
+
+    │   ├── Post-Processing MS (1 replica)
+
+    │   └── Temporal (minimal: 1 frontend + 1 history)
+
+    │
+
+    └── GPU Node: Standard_NC6s_v3 (6 vCPU, 112 GB, 1× Tesla V100) [SPOT: ~$400/mo]
+
+        └── Segmentation MS (0-1 replica, KEDA scale-to-zero)
+
+ 
+
+    Azure Service Bus: Standard tier [$10/mo]
+
+    ├── esdt-s2b-root-queue
+
+    ├── esdt-s2b-segmentation-queue
+
+    └── esdt-s2b-post-processing-queue
+
+ 
+
+    Azure Blob Storage: Hot LRS, 500 GB [$10/mo]
+
+    └── segmentation-store container
+
+ 
+
+    MongoDB Atlas: M10 Shared (3 nodes, 2 GB storage) [$60/mo]
+
+    └── esdt-scan2bim database
+
+ 
+
+    Azure Container Registry: Basic tier [$5/mo]
+
+    └── esdtcommonacr (images)
+
+ 
+
+    Temporal: Self-hosted (minimal, PostgreSQL backend)
+
+    └── PostgreSQL: Azure Database for PostgreSQL Flex (Burstable B2s) [$25/mo]
+
+ 
+
+    Total Infrastructure: ~$650-$750/month (excluding GPU)
+
+    + GPU (spot pricing, scale-to-zero): ~$400-$800/month (usage-based)
+
+    ═══════════════════════════════════════════════════════════════════
+
+    TOTAL MVP: ~$1,100 - $1,600/month
+
+═══════════════════════════════════════════════════════════════════════════════
+
+```
+
+ 
+
+### MVP vs Production Comparison
+
+ 
+
+| Aspect | MVP ($1,100-$1,600/mo) | Production ($4,400-$9,200/mo) |
+
+|--------|------------------------|-------------------------------|
+
+| **Standard Nodes** | 1× D4s_v3 (4 vCPU, 16 GB) | 2-5× D8s_v3 (8 vCPU, 32 GB) |
+
+| **GPU** | 1× NC6s_v3 V100 (Spot) | 1-5× NC24ads_A100 (On-demand) |
+
+| **GPU Availability** | May be preempted (spot) | Guaranteed (on-demand) |
+
+| **Service Bus** | Standard tier | Premium tier |
+
+| **Blob Storage** | LRS (single datacenter) | GRS (geo-redundant) |
+
+| **MongoDB** | M10 Shared (2 GB) | M30 Dedicated (40+ GB) |
+
+| **Temporal Backend** | PostgreSQL (Burstable) | PostgreSQL (General Purpose) |
+
+| **Redundancy** | None (single node) | Multi-AZ, multi-replica |
+
+| **Max Concurrent Scans** | 1-2 | 5+ |
+
+| **Scan Processing Time** | 45-120 min | 30-90 min |
+
+| **Availability SLA** | ~95% (spot preemption) | ~99.9% |
+
+| **GPU Cold Start** | 3-7 min (spot allocation) | 1-3 min (on-demand) |
+
+| **Recovery Time** | Manual intervention may be needed | Automatic failover |
+
+ 
+
+### MVP: What You Give Up
+
+ 
+
+| Sacrifice | Impact | Acceptable For MVP? |
+
+|-----------|--------|-------------------|
+
+| No geo-redundancy | Data loss if datacenter fails | ✅ Yes (non-critical data, re-scannable) |
+
+| Spot GPU instances | Occasional preemption mid-process | ✅ Yes (job retries automatically) |
+
+| Standard Service Bus | 1 MB max message, no private endpoint | ✅ Yes (our messages are < 10 KB) |
+
+| Smaller MongoDB | 2 GB limit, shared infrastructure | ✅ Yes (workflow tracking is tiny) |
+
+| Single standard node | If node dies, services restart on same node | ⚠️ Acceptable for dev/staging |
+
+| No ABAC/OPA | No fine-grained authorization | ✅ Yes (use network isolation instead) |
+
+ 
+
+### MVP: Step-by-Step Setup
+
+ 
+
+```
+
+Phase 1: Foundation (Week 1)
+
+├── Create Azure Resource Group
+
+├── Provision AKS cluster (1 standard node)
+
+├── Add GPU node pool (spot, scale-to-zero)
+
+├── Install: NGINX Ingress, cert-manager, KEDA, Flux CD
+
+└── Create: Service Bus (Standard), Blob Storage (LRS), ACR (Basic)
+
+ 
+
+Phase 2: Database & Workflow (Week 2)
+
+├── Provision MongoDB Atlas M10
+
+├── Deploy Temporal (minimal) with PostgreSQL backend
+
+├── Configure SOPS + Azure Key Vault (Basic)
+
+└── Set up Flux CD to watch GitOps repo
+
+ 
+
+Phase 3: Deploy Services (Week 3)
+
+├── Deploy Root Microservice
+
+├── Deploy Segmentation Microservice
+
+├── Deploy Post-Processing Microservice
+
+├── Configure KEDA ScaledJob for segmentation
+
+└── Test end-to-end with a sample E57 file
+
+ 
+
+Phase 4: Integration (Week 4)
+
+├── Configure webhook from DataRepo/Portal
+
+├── Set up Cognito credentials
+
+├── Configure DataRepo upload (SAS URL flow)
+
+└── Validate full pipeline: upload → IFC delivery
+
+```
+
+ 
+
+---
+
+ 
+
+## 5. Step-by-Step: How Data Flows Through Infrastructure
+
+ 
+
+This section traces a single scan from upload to delivery, showing exactly which infrastructure component is used at each step.
+
+ 
+
+```
+
+TIME    STEP                              INFRASTRUCTURE USED
+
+─────   ─────────────────────────────     ─────────────────────────────────────
+
+t=0     User uploads E57 to Portal        → ESDT Portal (external, not ours)
+
+        │
+
+t=1s    Portal stores file                → Azure Blob Storage (DataRepo's account)
+
+        │
+
+t=2s    DataRepo sends webhook            → NGINX Ingress → Root MS pod
+
+        │                                   (TLS terminated, path: /orchestrator)
+
+        │
+
+t=3s    Root MS creates workflow          → MongoDB (workflow_executions: PENDING)
+
+        │                                 → Service Bus (root-queue: WEBHOOK_EVENT)
+
+        │
+
+t=5s    Root MS starts Temporal workflow  → Temporal (gRPC to :7233)
+
+        │                                 → MongoDB (status: RUNNING)
+
+        │
+
+t=7s    Temporal calls generateSasUrl     → DataRepo API (via HTTPS + Cognito token)
+
+        │                                 → Returns: download URL valid for 1 hour
+
+        │
+
+t=10s   Temporal dispatches segmentation  → Service Bus (segmentation-queue)
+
+        │                                 → KEDA detects message → scales GPU node
+
+        │
+
+t=60s   GPU node starts (cold start)      → AKS GPU Node Pool (spot instance boots)
+
+        │                                 → ACR (pulls container image)
+
+        │
+
+t=120s  Segmentation MS picks up job      → Service Bus (receives from seg-queue)
+
+        │
+
+t=130s  Downloads E57 file                → Blob Storage (via SAS URL, ~30s for 2GB)
+
+        │
+
+t=150s  Runs AI inference (Pass 1)        → NVIDIA GPU (CUDA processing)
+
+        │                                   Memory: up to 200 GB used
+
+        │                                   Duration: 5-15 minutes
+
+        │
+
+t=900s  Wall extraction                   → CPU processing on GPU node
+
+        │
+
+t=960s  Runs AI inference (Pass 2)        → NVIDIA GPU (refined pass)
+
+        │                                   Duration: 3-10 minutes
+
+        │
+
+t=1500s Uploads results                   → Blob Storage (PLY files → segmentation-store)
+
+        │
+
+t=1510s Signals Root MS                   → HTTP POST → Root MS → Temporal signal
+
+        │                                 → Service Bus (post-processing-queue)
+
+        │
+
+t=1520s GPU node scales to zero           → KEDA (no more messages → terminates pod)
+
+        │                                   (SAVES MONEY: no GPU running when idle)
+
+        │
+
+t=1530s Post-Processing picks up job      → Service Bus (receives from pp-queue)
+
+        │
+
+t=1540s Downloads PLY files               → Blob Storage (segmentation-store → local /tmp)
+
+        │
+
+t=1560s Geometry extraction               → CPU-intensive processing (24 GB RAM)
+
+        │  - Wall detection                  Duration: 10-30 minutes
+
+        │  - Door, rack, cabinet...
+
+        │  - Conflict resolution
+
+        │  - Image processing (YOLO)
+
+        │
+
+t=3000s Creates IFC file                  → subprocess: dotnet IFCCreator.dll
+
+        │                                   Duration: 2-5 minutes
+
+        │
+
+t=3300s Uploads IFC to DataRepo           → AWS Cognito (get token)
+
+        │                                 → DataRepo API (get SAS upload URL)
+
+        │                                 → Azure Blob (PUT IFC via SAS)
+
+        │
+
+t=3330s Backup upload                     → Blob Storage (segmentation-store/ifc/)
+
+        │
+
+t=3340s Signals completion                → HTTP POST → Root MS
+
+        │                                 → Temporal signal (workflow completes)
+
+        │                                 → MongoDB (status: COMPLETED)
+
+        │
+
+t=3350s User can download IFC             → DataRepo → Portal → User
+
+        │
+
+─────   TOTAL: ~55 minutes               ─────────────────────────────────────
+
+```
+
+ 
+
+---
+
+ 
+
+## 6. Security Model
+
+ 
+
+### How Authentication Works (Simplified)
+
+ 
+
+```
+
+WHO TALKS TO WHOM AND HOW THEY PROVE IDENTITY:
+
+ 
+
+┌─────────────┐                    ┌─────────────┐
+
+│ User/Portal │ ──Entra ID token──▶│  Root MS    │
+
+└─────────────┘                    └──────┬──────┘
+
+                                          │ (internal, no auth needed
+
+                                          │  — same private network)
+
+                                          ▼
+
+┌─────────────────────┐            ┌─────────────┐
+
+│ Segmentation MS     │◀───────────│ Service Bus │ ← Managed Identity
+
+└─────────────────────┘            └─────────────┘   (no passwords!)
+
+         │
+
+         │ (signals back via HTTP — internal cluster, no auth)
+
+         ▼
+
+┌─────────────────────┐            ┌─────────────┐
+
+│ Post-Processing MS  │───────────▶│ DataRepo    │ ← Cognito Bearer Token
+
+└─────────────────────┘            └─────────────┘
+
+```
+
+ 
+
+### Security Layers
+
+ 
+
+| Layer | What It Protects | How |
+
+|-------|-----------------|-----|
+
+| **Network** | Cluster from internet | Private network, no public IPs on pods |
+
+| **TLS** | Data in transit | HTTPS everywhere (cert-manager auto-renews) |
+
+| **Identity** | Azure resources | Workload Identity (no passwords stored anywhere) |
+
+| **RBAC** | Who can do what | Kubernetes roles + Azure roles (least privilege) |
+
+| **Secrets** | Sensitive config | SOPS-encrypted in Git, decrypted only inside cluster |
+
+| **Scanning** | Container images | Trivy vulnerability scanning in CI pipeline |
+
+| **CORS** | API access | Only `*.ericsson.net` domains allowed |
+
+ 
+
+### The Key Principle: NO PASSWORDS IN CODE
+
+ 
+
+```
+
+OLD WAY (bad):    Service → reads password from .env → connects to database
+
+NEW WAY (good):   Service → asks Azure "I am this pod" → Azure says "OK, here's access"
+
+ 
+
+This is called "Workload Identity" — the service proves who it is by where it runs,
+
+not by knowing a secret. If someone steals your code, they still can't access anything.
+
+```
+
+ 
+
+---
+
+ 
+
+## 7. Cost Breakdown & Comparison
+
+ 
+
+### Three Tiers Explained
+
+ 
+
+```
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+
+│                    COST TIERS COMPARISON                                      │
+
+├──────────────┬────────────────────┬───────────────────┬─────────────────────┤
+
+│              │ MVP / DEV          │ STAGING           │ PRODUCTION          │
+
+│              │ ($1,100-$1,600/mo) │ ($2,500-$3,500/mo)│ ($4,400-$9,200/mo)  │
+
+├──────────────┼────────────────────┼───────────────────┼─────────────────────┤
+
+│ Scans/day    │ 5-10               │ 20-30             │ 50+                 │
+
+│ Concurrent   │ 1-2                │ 3-5               │ 5-10+               │
+
+│ Availability │ ~95%               │ ~99.5%            │ ~99.9%              │
+
+│ Recovery     │ Manual (hours)     │ Semi-auto (30min) │ Auto (<5 min)       │
+
+│ Regions      │ 1                  │ 1                 │ 2-3                 │
+
+│ GPU          │ V100 Spot (1)      │ A100 On-demand(1) │ A100 On-demand(1-5) │
+
+│ Redundancy   │ None               │ AZ-redundant      │ Geo-redundant       │
+
+└──────────────┴────────────────────┴───────────────────┴─────────────────────┘
+
+```
+
+ 
+
+### Detailed MVP Cost Breakdown
+
+ 
+
+| Resource | SKU | Monthly Cost | Notes |
+
+|----------|-----|-------------|-------|
+
+| AKS Standard Node | D4s_v3 (4 vCPU, 16 GB) | $140 | Always on |
+
+| AKS GPU Node (Spot) | NC6s_v3 (V100, 112 GB) | $200-$600 | Only when processing (~4h/day avg) |
+
+| Service Bus | Standard tier, 3 queues | $10 | 12.5M operations included |
+
+| Blob Storage | Hot LRS, 500 GB | $10 | + $5 transactions |
+
+| MongoDB Atlas | M10 (2 GB, 3 nodes) | $60 | Shared infrastructure |
+
+| ACR | Basic | $5 | 10 GB storage |
+
+| PostgreSQL (Temporal) | Burstable B2s | $25 | 32 GB storage |
+
+| Key Vault | Standard | $3 | Secrets + SOPS key |
+
+| DNS | Azure DNS zone | $1 | Per hosted zone |
+
+| **Subtotal** | | **$454-$854** | |
+
+| **Buffer (overages, egress)** | | **$100-$200** | |
+
+| **TOTAL MVP** | | **~$550-$1,050/month** | |
+
+ 
+
+> 💡 **The GPU is the biggest variable.** With spot pricing and scale-to-zero:
+
+> - 0 scans/day = $0 GPU cost
+
+> - 5 scans/day × 30 min each = 2.5 hours GPU × $3.50/hr = ~$11/day = **~$330/month**
+
+> - 10 scans/day = **~$660/month** for GPU
+
+ 
+
+### Cost Optimization Strategies
+
+ 
+
+| Strategy | How It Works | Savings |
+
+|----------|-------------|---------|
+
+| **GPU Scale-to-Zero** | KEDA turns off GPU when queue is empty | 50-80% (vs always-on) |
+
+| **Spot Instances** | Use "spare" capacity at 60-70% discount | 60-70% on GPU |
+
+| **Reserved Instances** | Commit to 1 year for standard nodes | 30-40% |
+
+| **Blob Lifecycle** | Auto-move old files to cheaper storage | 50% on storage |
+
+| **Service Bus Standard** | Use Standard instead of Premium for dev/MVP | 98% ($10 vs $680) |
+
+| **MongoDB Shared** | M10 instead of M30 for small workloads | 85% ($60 vs $400) |
+
+ 
+
+---
+
+ 
+
+## 8. Environments & Scaling Path
+
+ 
+
+### Growth Roadmap
+
+ 
+
+```
+
+MONTH 1-3: MVP
+
+├── 1 environment (test)
+
+├── 5-10 scans/day
+
+├── ~$1,100/month
+
+└── Team: 1-2 developers
+
+ 
+
+MONTH 4-6: Staging + Production
+
+├── 2 environments (staging + prod)
+
+├── 20-30 scans/day
+
+├── ~$5,000/month (both combined)
+
+└── Team: 3-5 developers
+
+ 
+
+MONTH 7-12: Multi-Region Production
+
+├── 4+ environments (test + staging + prod-US + prod-EU)
+
+├── 50+ scans/day
+
+├── ~$15,000-$25,000/month (all combined)
+
+└── Team: 5-8 developers + 1-2 DevOps
+
+```
+
+ 
+
+### Scaling Triggers (When to Upgrade)
+
+ 
+
+| Trigger | Action | Cost Impact |
+
+|---------|--------|-------------|
+
+| Queue depth > 5 for > 10 min | Add GPU node (KEDA max: 5) | +$2,400/mo per node |
+
+| Post-Processing OOM kills | Increase memory limit (24 → 32 GB) | Needs larger VM |
+
+| > 95% MongoDB capacity | Upgrade M10 → M30 | +$340/mo |
+
+| Need < 1h recovery time | Add second standard node + AZ spread | +$280/mo |
+
+| Compliance requires geo-redundancy | Enable GRS on Blob, add second region | +$3,000/mo |
+
+ 
+
+---
+
+ 
+
+## 9. What Could Go Wrong (and How We Handle It)
+
+ 
+
+### Failure Scenarios
+
+ 
+
+| What Fails | Impact | Auto-Recovery | Manual Action Needed? |
+
+|------------|--------|---------------|----------------------|
+
+| GPU pod dies mid-processing | Scan fails | Message returns to queue, retries (3x) | No |
+
+| GPU Spot preemption | Processing interrupted | New spot node allocated, message retried | No (but may take 3-7 min) |
+
+| Post-Processing OOM | Geometry extraction fails | Pod restarts, message retried | If repeated: increase memory |
+
+| Service Bus unavailable | Messages delayed | Automatic reconnect with backoff | No |
+
+| MongoDB connection lost | State updates fail | Retry with backoff, pod reconnects | No |
+
+| Temporal server crashes | Workflows paused | Temporal auto-recovers on restart | No (may take 1-2 min) |
+
+| Root MS pod crashes | No new webhooks processed | K8s auto-restarts pod (<30s) | No |
+
+| Blob Storage timeout | File download fails | retry_with_backoff (3 attempts) | No |
+
+| Cognito token expired | DataRepo upload fails | Auto-refresh (60s before expiry) | No |
+
+| Non-retryable error | Scan permanently fails | Workflow cancelled, sent to DLQ | Yes: inspect DLQ |
+
+ 
+
+### The Dead Letter Queue (DLQ) — Your "Error Inbox"
+
+ 
+
+When a message fails all retries, it goes to the DLQ. This is like an error inbox that a developer must check periodically:
+
+ 
+
+```
+
+DLQ contains:
+
+├── The original message (what was the scan? which customer?)
+
+├── The error reason (what went wrong?)
+
+└── Retry count (how many times did we try?)
+
+ 
+
+Action: Developer inspects, fixes the issue, then either:
+
+  - Re-queues the message (try again)
+
+  - Marks as "won't fix" (e.g., corrupted scan file)
+
+```
+
+ 
+
+---
+
+ 
+
+## 10. Glossary
+
+ 
+
+| Term | Simple Explanation |
+
+|------|-------------------|
+
+| **AKS** | Azure Kubernetes Service — managed container platform |
+
+| **Pod** | One running instance of a service (like one copy of the app) |
+
+| **Node** | A virtual machine that runs pods |
+
+| **KEDA** | Auto-scales pods based on events (like queue messages) |
+
+| **Spot Instance** | Cheap VM that Azure can take back if they need the capacity |
+
+| **Managed Identity** | Azure's way of giving apps access without passwords |
+
+| **Service Bus** | Message queue — like email between services |
+
+| **Blob Storage** | File storage — like a shared drive in the cloud |
+
+| **Temporal** | Workflow engine — remembers multi-step processes |
+
+| **Flux CD** | GitOps tool — deploys code automatically when Git changes |
+
+| **NGINX Ingress** | The "front door" that routes HTTP requests to the right service |
+
+| **cert-manager** | Auto-creates and renews HTTPS certificates |
+
+| **SOPS** | Encrypts secrets in Git (only the cluster can decrypt) |
+
+| **DLQ** | Dead Letter Queue — where failed messages go for human review |
+
+| **SAS URL** | Shared Access Signature — a temporary link to a blob file |
+
+| **IFC** | Industry Foundation Classes — standard format for BIM models |
+
+| **E57** | Standard format for 3D point cloud data from laser scanners |
+
+| **Pointcept** | The ML framework used for point cloud semantic segmentation |
+
+| **xBIM** | .NET library for creating IFC files |
+
+| **Workload Identity** | K8s pod ↔ Azure AD trust (no secrets needed) |
+
+| **GRS** | Geo-Redundant Storage — copies data to a second Azure region |
+
+| **LRS** | Locally-Redundant Storage — copies data within one datacenter |
+
+| **ABAC/OPA** | Authorization policy engine (who can access what) |
+
+| **gRPC** | Fast communication protocol used by Temporal |
+
+| **M2M** | Machine-to-Machine — services talking to services (not humans) |
+
+ 
+
+---
+
+ 
+
+## Summary: Decision Matrix
+
+ 
+
+| If you're... | Read sections... | Key takeaway |
+
+|-------------|-----------------|--------------|
+
+| A **project manager** | 1, 4, 7 | MVP costs ~$1,100/mo, prod ~$4,400-$9,200/mo |
+
+| A **new developer** | 1, 2, 5 | The system is 3 services + cloud plumbing |
+
+| A **DevOps engineer** | 3, 4, 8 | AKS + KEDA + Flux CD + SOPS |
+
+| A **security reviewer** | 6 | Workload Identity, no passwords, TLS everywhere |
+
+| A **cloud architect** | 3, 8, 9 | Multi-region, HA design, DR strategy |
+
+| A **finance approver** | 4, 7 | MVP saves 75% vs production |
+
+ 
+
+---
+
+ 

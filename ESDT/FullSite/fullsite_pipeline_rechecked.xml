@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-16T12:00:00.000Z" agent="Kiro" version="24.0.0">
+  <diagram id="fullsite-pipeline" name="Full-Site Pipeline">
+    <mxGraphModel dx="1800" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="&lt;b&gt;ESDT Scan2BIM – Full-Site Pipeline Architecture&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="20" width="600" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="portal" value="&lt;b&gt;ESDT Portal&lt;/b&gt;&lt;br&gt;User uploads LAS/LAZ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="850" y="70" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="datarepo" value="&lt;b&gt;DataRepo&lt;/b&gt;&lt;br&gt;Webhook notification (las_laz)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="850" y="140" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="a0" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="portal" target="datarepo">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="root_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=15;" vertex="1" parent="1">
+          <mxGeometry x="600" y="210" width="700" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="root_label" value="&lt;b&gt;FULL-SITE ROOT MICROSERVICE&lt;/b&gt; (NestJS, Port 3000, /fullsiteorchestrator/*)" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="215" width="500" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_webhook" value="&lt;b&gt;Webhook Handler&lt;/b&gt;&lt;br&gt;/api/webhook&lt;br&gt;source: las_laz" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="620" y="245" width="140" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_temporal" value="&lt;b&gt;Temporal Workflow&lt;/b&gt;&lt;br&gt;Activity dispatch&lt;br&gt;Signal handling&lt;br&gt;Workflow lifecycle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="780" y="245" width="150" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_signal" value="&lt;b&gt;Signal Controller&lt;/b&gt;&lt;br&gt;POST /api/signal/activity&lt;br&gt;POST /api/signal/cancel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="950" y="245" width="160" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_dispatch" value="&lt;b&gt;Queue Dispatch&lt;/b&gt;&lt;br&gt;-&gt; full-site-segmentation-queue&lt;br&gt;-&gt; full-site-post-processing-queue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="620" y="320" width="250" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_mongo" value="&lt;b&gt;MongoDB&lt;/b&gt;&lt;br&gt;esdt-scan2bim-fullsite&lt;br&gt;workflow + activity tracking" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="900" y="315" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_dr" value="Webhook" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=8;" edge="1" parent="1" source="datarepo" target="r_webhook">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="seg_ms" value="&lt;b&gt;FULL-SITE SEGMENTATION MS&lt;/b&gt;&lt;br&gt;(Python + NVIDIA GPU | KEDA 0-&gt;2)&lt;br&gt;&lt;hr&gt;&lt;b&gt;Processing:&lt;/b&gt;&lt;br&gt;• Download LAS/LAZ from Blob Storage&lt;br&gt;• Deep Learning Inference (Pointcept)&lt;br&gt;• GPU: xlarge node (200Gi mem limit)&lt;br&gt;&lt;br&gt;&lt;b&gt;Output Classes:&lt;/b&gt;&lt;br&gt;MONOPOLE | antenna_longer | antenna_circular&lt;br&gt;RAYCAP | RADIO_DEVICE | antenna_shorter&lt;br&gt;FOUNDATION | FENCE | HEADFRAME | PLATFORM&lt;br&gt;&lt;br&gt;&lt;b&gt;Output:&lt;/b&gt; Segmented PLY pen class&lt;br&gt;-&gt; segmentation-store blob container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="450" width="310" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="pp_ms" value="&lt;b&gt;FULL-SITE POST-PROCESSING MS&lt;/b&gt;&lt;br&gt;(Python, 24Gi memory, Port 4000)&lt;br&gt;&lt;hr&gt;&lt;b&gt;A) Queue Consumer&lt;/b&gt;&lt;br&gt;• Service Bus receiver (lock renewal 30s)&lt;br&gt;• Idempotency via MongoDB job repo&lt;br&gt;&lt;br&gt;&lt;b&gt;B) Geometry Extraction (20 steps)&lt;/b&gt;&lt;br&gt;• Pole [MANDATORY] -&gt; Foundation -&gt; Antenna&lt;br&gt;• Raycap -&gt; Pipes -&gt; Radio -&gt; Headframe&lt;br&gt;• Platform -&gt; Clamps -&gt; Fence -&gt; Base&lt;br&gt;• Height adjustments + snapping&lt;br&gt;• 11 Feature Flags (toggleable)&lt;br&gt;&lt;br&gt;&lt;b&gt;C) Hierarchy Builder&lt;/b&gt;&lt;br&gt;• assign_parent_ids (7 rules)&lt;br&gt;• build_sector_mounts (azimuth 15°)&lt;br&gt;&lt;br&gt;&lt;b&gt;D) IFC Creator (Embedded)&lt;/b&gt;&lt;br&gt;• JSON -&gt; IFC conversion&lt;br&gt;&lt;br&gt;&lt;b&gt;E) DataRepo Upload&lt;/b&gt;&lt;br&gt;• Cognito -&gt; SAS URL -&gt; PUT IFC&lt;br&gt;&lt;br&gt;&lt;b&gt;F) Dual Signaling&lt;/b&gt;&lt;br&gt;• Temporal + HTTP to Root" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="520" y="440" width="310" height="430" as="geometry"/>
+        </mxCell>
+        <mxCell id="infra_title" value="INFRASTRUCTURE" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=5;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="440" width="150" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="sbus" value="&lt;b&gt;Azure Service Bus&lt;/b&gt;&lt;br&gt;(azure-identity)&lt;br&gt;&lt;br&gt;• full-site-segmentation-queue&lt;br&gt;• full-site-post-processing-queue&lt;br&gt;• full-site-post-processing-dlq" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="960" y="465" width="230" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="blob" value="&lt;b&gt;Azure Blob Storage&lt;/b&gt;&lt;br&gt;(Managed Identity)&lt;br&gt;&lt;br&gt;Container: segmentation-store&lt;br&gt;• /segmented PLY files&lt;br&gt;• /ifc/{fileId}.ifc (backup)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="960" y="600" width="230" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="temporal" value="&lt;b&gt;Temporal&lt;/b&gt;&lt;br&gt;temporal-frontend.temporal.svc:7233&lt;br&gt;Workflow orchestration + signals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="960" y="720" width="230" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="cognito" value="&lt;b&gt;AWS Cognito&lt;/b&gt;&lt;br&gt;OAuth2 client_credentials&lt;br&gt;Token caching (60s buffer)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="960" y="790" width="230" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="keda" value="&lt;b&gt;KEDA&lt;/b&gt;&lt;br&gt;Autoscales Segmentation 0-&gt;2&lt;br&gt;Polls queue every 30s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="960" y="855" width="230" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_root_seg" value="segmentation-queue" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;fontSize=8;" edge="1" parent="1" source="r_dispatch" target="seg_ms">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="255" y="345"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_root_pp" value="post-processing-queue" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;fontSize=8;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="r_dispatch" target="pp_ms">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="745" y="395"/>
+              <mxPoint x="675" y="395"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_seg_blob" value="PLY files&lt;br&gt;to Blob" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;fontSize=8;" edge="1" parent="1" source="seg_ms" target="blob">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="580"/>
+              <mxPoint x="450" y="650"/>
+              <mxPoint x="960" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_blob_pp" value="Download PLY&lt;br&gt;from Blob" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;fontSize=8;" edge="1" parent="1" source="blob" target="pp_ms">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="650"/>
+              <mxPoint x="900" y="655"/>
+              <mxPoint x="830" y="655"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sig_seg" value="HTTP Signal&lt;br&gt;SEGMENTATION&lt;br&gt;COMPLETED" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="seg_ms" target="r_signal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="70" y="580"/>
+              <mxPoint x="70" y="200"/>
+              <mxPoint x="1030" y="200"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sig_pp" value="HTTP Signal +&lt;br&gt;Temporal Signal&lt;br&gt;POST PROCESSING&lt;br&gt;COMPLETED" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="pp_ms" target="r_signal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="870"/>
+              <mxPoint x="1220" y="870"/>
+              <mxPoint x="1220" y="272"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_pp_dr" value="Upload IFC&lt;br&gt;(Cognito SAS)" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;dashed=1;fontSize=8;" edge="1" parent="1" source="pp_ms" target="datarepo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="870"/>
+              <mxPoint x="1260" y="870"/>
+              <mxPoint x="1260" y="162"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;—— Blue: Queue dispatch (Service Bus)&lt;br&gt;—— Orange: Data transfer (Blob/HTTP)&lt;br&gt;- - - Green: Completion signals (HTTP + Temporal)&lt;br&gt;—— Black: Webhook / API calls" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#999999;dashed=1;fontSize=9;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="100" y="780" width="280" height="80" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

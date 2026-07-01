@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-16T12:00:00.000Z" agent="Kiro" version="24.0.0">
+  <diagram id="root-ms" name="Root Microservice">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="Inshelter Root Microservice – Internal Architecture" style="text;html=1;align=center;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="20" width="500" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="up" value="&lt;b&gt;UPSTREAM&lt;/b&gt;&lt;br&gt;ESDT Portal / DataRepo&lt;br&gt;(E57 upload webhook)" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="wh" value="&lt;b&gt;Webhook Controller&lt;/b&gt;&lt;br&gt;POST /api/webhook&lt;br&gt;Validates source=e57" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="110" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="orch" value="&lt;b&gt;Orchestration Service&lt;/b&gt;&lt;br&gt;initiateWorkflow()&lt;br&gt;startTemporalWorkflow()&lt;br&gt;sendActivitySignal()" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="180" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="qp" value="&lt;b&gt;Queue Processor&lt;/b&gt;&lt;br&gt;Routes: WEBHOOK_EVENT&lt;br&gt;SEGMENTATION_COMPLETE&lt;br&gt;POST_PROCESSING_COMPLETE" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="300" width="180" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="sig" value="&lt;b&gt;Signal Controller&lt;/b&gt;&lt;br&gt;POST /api/signal/activity&lt;br&gt;POST /api/signal/cancel" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="420" width="180" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="tw" value="&lt;b&gt;Temporal Workflow&lt;/b&gt;&lt;br&gt;(Scan2BimWorkflow)&lt;br&gt;Step1 generateSasUrl&lt;br&gt;Step2 startSegmentation + WAIT&lt;br&gt;Step3 startPostProcessing + WAIT" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="570" y="110" width="240" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="act" value="&lt;b&gt;Activities&lt;/b&gt;&lt;br&gt;generateSasUrl → DataRepo API&lt;br&gt;startSegmentation → seg queue&lt;br&gt;startPostProcessing → MongoDB" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="570" y="280" width="220" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="mongo" value="&lt;b&gt;MongoDB&lt;/b&gt;&lt;br&gt;workflow_executions&lt;br&gt;activity_executions" style="shape=cylinder3;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="860" y="110" width="150" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="qprod" value="&lt;b&gt;Queue Producer&lt;/b&gt;&lt;br&gt;sends to root + segmentation queue" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="860" y="210" width="180" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="ts" value="&lt;b&gt;Temporal Server&lt;/b&gt;&lt;br&gt;:7233 (gRPC)" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="860" y="310" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="down_seg" value="&lt;b&gt;DOWNSTREAM&lt;/b&gt;&lt;br&gt;Segmentation MS (via queue)" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="200" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="down_pp" value="&lt;b&gt;DOWNSTREAM&lt;/b&gt;&lt;br&gt;Post-Processing MS (signals back)" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="400" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a1" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="up" target="wh">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="wh" target="orch">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="orch" target="tw">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a4" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="tw" target="act">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a5" value="queue msg" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;fontSize=8;" edge="1" parent="1" source="qprod" target="down_seg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a6" value="HTTP signal" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="down_seg" target="sig">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1280" y="330"/>
+              <mxPoint x="520" y="330"/>
+              <mxPoint x="520" y="475"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a7" value="HTTP signal" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="down_pp" target="sig">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1200" y="430"/>
+              <mxPoint x="530" y="430"/>
+              <mxPoint x="530" y="475"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

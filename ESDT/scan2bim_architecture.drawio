@@ -1,0 +1,265 @@
+<mxfile host="app.diagrams.net" modified="2026-06-16T12:00:00.000Z" agent="Kiro" version="24.0.0">
+  <diagram id="scan2bim-architecture" name="Solution Architecture">
+    <mxGraphModel dx="2074" dy="1156" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="ESDT Scan2BIM – Complete Solution Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ESDT Portal -->
+        <mxCell id="portal" value="&lt;b&gt;ESDT Portal&lt;/b&gt;&lt;br&gt;(User Interface)&lt;br&gt;File Upload: LAS/LAZ/E57" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="80" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- DataRepo -->
+        <mxCell id="datarepo" value="&lt;b&gt;DataRepo API&lt;/b&gt;&lt;br&gt;(ESDT File Management)&lt;br&gt;SAS URL Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="180" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Webhook arrow -->
+        <mxCell id="arrow_portal_datarepo" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="portal" target="datarepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label_webhook" value="Upload Event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;" vertex="1" connectable="0" parent="arrow_portal_datarepo">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ========== SINGLE-SCAN PIPELINE (LEFT) ========== -->
+        <mxCell id="single_scan_group" value="SINGLE-SCAN PIPELINE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=5;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="270" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Single Root MS -->
+        <mxCell id="single_root" value="&lt;b&gt;Root Microservice&lt;/b&gt;&lt;br&gt;(NestJS / TypeScript)&lt;br&gt;Port: 3000&lt;br&gt;Path: /api/*&lt;br&gt;&lt;br&gt;• Temporal Workflow Orchestration&lt;br&gt;• REST API Gateway&lt;br&gt;• Service Bus Message Dispatch&lt;br&gt;• MongoDB State Tracking&lt;br&gt;• Signal Controller" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="310" width="260" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Single Segmentation -->
+        <mxCell id="single_seg" value="&lt;b&gt;Segmentation MS&lt;/b&gt;&lt;br&gt;(Python + GPU)&lt;br&gt;&lt;br&gt;• ML Inference (Pointcept)&lt;br&gt;• NVIDIA GPU required&lt;br&gt;• KEDA 0-2 replicas&lt;br&gt;• Outputs: PLY files" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="530" width="260" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Single Post-Processing -->
+        <mxCell id="single_pp" value="&lt;b&gt;Post-Processing MS&lt;/b&gt;&lt;br&gt;&lt;br&gt;(Python)&lt;br&gt;&lt;br&gt;• Geometry Extraction&lt;br&gt;• JSON Output&lt;br&gt;• Signals Root via HTTP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="710" width="260" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Single IFC Creation -->
+        <mxCell id="single_ifc" value="&lt;b&gt;IFC Creation MS&lt;/b&gt;&lt;br&gt;&lt;br&gt;(C# .NET / xBIM)&lt;br&gt;&lt;br&gt;• JSON → IFC Conversion&lt;br&gt;• Uploads to Blob Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="870" width="260" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Single-scan arrows -->
+        <mxCell id="ss_arrow1" value="esdt-s2b-segmentation-queue" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;fontSize=8;" edge="1" parent="1" source="single_root" target="single_seg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ss_arrow2" value="Blob Storage (PLY files)" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;fontSize=8;" edge="1" parent="1" source="single_seg" target="single_pp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ss_arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;fontSize=8;" edge="1" parent="1" source="single_pp" target="single_ifc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ss_signal1" value="HTTP Signal" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="single_seg" target="single_root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="80" y="590" />
+              <mxPoint x="80" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ss_signal2" value="HTTP Signal" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="single_pp" target="single_root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="760" />
+              <mxPoint x="60" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ss_signal3" value="HTTP Signal" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="single_ifc" target="single_root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="915" />
+              <mxPoint x="40" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ========== FULL-SITE PIPELINE (RIGHT) ========== -->
+        <mxCell id="full_site_group" value="FULL-SITE PIPELINE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=5;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="600" y="270" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Full-Site Root MS -->
+        <mxCell id="fs_root" value="&lt;b&gt;Full-Site Root MS&lt;/b&gt;&lt;br&gt;(NestJS / TypeScript)&lt;br&gt;Port: 3000&lt;br&gt;Path: /fullsiteorchestrator/*&lt;br&gt;&lt;br&gt;• Temporal Workflow Orchestration&lt;br&gt;• DataRepo Webhook Listener&lt;br&gt;• Service Bus Dispatch&lt;br&gt;• MongoDB State&lt;br&gt;• Signal + Cancel endpoints&lt;br&gt;• Notification: LAS/LAZ source" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="530" y="310" width="280" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Full-Site Segmentation -->
+        <mxCell id="fs_seg" value="&lt;b&gt;Full-Site Segmentation MS&lt;/b&gt;&lt;br&gt;(Python + GPU)&lt;br&gt;&lt;br&gt;• Deep Learning Inference (Pointcept)&lt;br&gt;• NVIDIA GPU (200Gi mem limit)&lt;br&gt;• KEDA: 0→2 replicas (queue depth)&lt;br&gt;• Output classes: MONOPOLE, antenna_longer,&lt;br&gt;  antenna_circular, RAYCAP, RADIO_DEVICE,&lt;br&gt;  antenna_shorter, FOUNDATION, FENCE, etc.&lt;br&gt;• Outputs: segmented PLY → Blob Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="530" y="550" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Full-Site Post-Processing -->
+        <mxCell id="fs_pp" value="&lt;b&gt;Full-Site Post-Processing MS&lt;/b&gt;&lt;br&gt;(Python, 24Gi memory)&lt;br&gt;&lt;br&gt;• Queue Consumer (Azure Service Bus)&lt;br&gt;• Geometry Extraction Pipeline (20 steps)&lt;br&gt;• Feature Flags (11 toggleable components)&lt;br&gt;• Hierarchy Builder + Sector Mounts&lt;br&gt;• IFC Creation (embedded IFCCreator)&lt;br&gt;• DataRepo Upload (Cognito SAS)&lt;br&gt;• Temporal + HTTP dual signaling&lt;br&gt;• Health Server (:4000 separate process)&lt;br&gt;• Retry logic + DLQ routing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="530" y="770" width="280" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Full-site arrows -->
+        <mxCell id="fs_arrow1" value="esdt-s2b-full-site-segmentation-queue" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;fontSize=8;" edge="1" parent="1" source="fs_root" target="fs_seg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fs_arrow2" value="esdt-s2b-full-site-post-processing-queue" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;fontSize=8;" edge="1" parent="1" source="fs_root" target="fs_pp">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="490" />
+              <mxPoint x="490" y="865" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fs_blob_arrow" value="PLY files via Blob" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;fontSize=8;" edge="1" parent="1" source="fs_seg" target="fs_pp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fs_signal1" value="HTTP Signal&amp;#xa;+ Temporal Signal" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="fs_seg" target="fs_root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="870" y="630" />
+              <mxPoint x="870" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fs_signal2" value="HTTP Signal&amp;#xa;+ Temporal Signal" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="fs_pp" target="fs_root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="890" y="865" />
+              <mxPoint x="890" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ========== INFRASTRUCTURE (BOTTOM) ========== -->
+        <mxCell id="infra_title" value="INFRASTRUCTURE SERVICES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=5;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="380" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Azure Service Bus -->
+        <mxCell id="servicebus" value="&lt;b&gt;Azure Service Bus&lt;/b&gt;&lt;br&gt;(azure-identity auth)&lt;br&gt;&lt;br&gt;Queues:&lt;br&gt;• esdt-s2b-root-queue&lt;br&gt;• esdt-s2b-segmentation-queue&lt;br&gt;• esdt-s2b-full-site-root-queue&lt;br&gt;• esdt-s2b-full-site-segmentation-queue&lt;br&gt;• esdt-s2b-full-site-post-processing-queue&lt;br&gt;• *-dlq (dead letter queues)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="960" y="420" width="280" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Azure Blob Storage -->
+        <mxCell id="blobstorage" value="&lt;b&gt;Azure Blob Storage&lt;/b&gt;&lt;br&gt;(Managed Identity)&lt;br&gt;&lt;br&gt;Container: segmentation-store&lt;br&gt;• /segmented PLY files&lt;br&gt;• /ifc/ (backup IFC outputs)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="960" y="630" width="280" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- MongoDB -->
+        <mxCell id="mongodb" value="&lt;b&gt;MongoDB Atlas&lt;/b&gt;&lt;br&gt;DB: esdt-scan2bim-fullsite&lt;br&gt;&lt;br&gt;Collections:&lt;br&gt;• fullsite_activity_executions&lt;br&gt;• app_logs&lt;br&gt;• workflow_state" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="960" y="780" width="280" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Temporal -->
+        <mxCell id="temporal" value="&lt;b&gt;Temporal&lt;/b&gt;&lt;br&gt;(Workflow Engine)&lt;br&gt;temporal-frontend.temporal.svc:7233&lt;br&gt;&lt;br&gt;• Workflow orchestration&lt;br&gt;• Signal handling&lt;br&gt;• Activity scheduling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="420" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- AWS Cognito -->
+        <mxCell id="cognito" value="&lt;b&gt;AWS Cognito&lt;/b&gt;&lt;br&gt;(M2M Authentication)&lt;br&gt;&lt;br&gt;• client_credentials grant&lt;br&gt;• Token caching (60s buffer)&lt;br&gt;• Inter-service auth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="570" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- KEDA -->
+        <mxCell id="keda" value="&lt;b&gt;KEDA&lt;/b&gt;&lt;br&gt;(Event-Driven Autoscaler)&lt;br&gt;&lt;br&gt;• Scales GPU pods 0→2&lt;br&gt;• Polls queue every 30s&lt;br&gt;• Activation: 1 message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="700" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Flux CD -->
+        <mxCell id="fluxcd" value="&lt;b&gt;Flux CD (GitOps)&lt;/b&gt;&lt;br&gt;&lt;br&gt;• HelmRelease CRDs&lt;br&gt;• 8 environments&lt;br&gt;• esdt-s2b-gitops repo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="830" width="240" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ========== TRAINING & TOOLS (FAR RIGHT) ========== -->
+        <mxCell id="training_title" value="ML TRAINING &amp; TOOLS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=5;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1620" y="380" width="250" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ml_training" value="&lt;b&gt;ML Training&lt;/b&gt;&lt;br&gt;esdt-scan-2-bim-ml-training&lt;br&gt;(Pointcept framework)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="420" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ocr_training" value="&lt;b&gt;OCR Training&lt;/b&gt;&lt;br&gt;esdt-scan-2-bim-ocr-training" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="500" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="yolox_training" value="&lt;b&gt;YOLOX Training&lt;/b&gt;&lt;br&gt;esdt-scan-2-bim-yolox-training" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="570" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="test_viewer" value="&lt;b&gt;Test Viewer&lt;/b&gt;&lt;br&gt;esdt-s2b-test-viewer&lt;br&gt;(Node.js + Autodesk APS)&lt;br&gt;IFC 3D Visualization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="640" width="220" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="auto_tag" value="&lt;b&gt;Auto-Tagging Tool&lt;/b&gt;&lt;br&gt;esdt-scan-2-bim-auto-tagging-tool&lt;br&gt;(CI/CD version tagging)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="730" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gitops_box" value="&lt;b&gt;GitOps Repo&lt;/b&gt;&lt;br&gt;esdt-s2b-gitops&lt;br&gt;(Flux CD configs, 8 envs)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="810" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Model feeds arrow -->
+        <mxCell id="model_arrow" value="Trained models deployed to" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#666666;fontSize=8;" edge="1" parent="1" source="ml_training" target="fs_seg">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1570" y="450" />
+              <mxPoint x="1570" y="630" />
+              <mxPoint x="810" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Webhook arrows from DataRepo -->
+        <mxCell id="dr_to_single" value="Webhook (E57)" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=8;" edge="1" parent="1" source="datarepo" target="single_root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1050" y="260" />
+              <mxPoint x="260" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dr_to_fullsite" value="Webhook (LAS/LAZ)" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=8;" edge="1" parent="1" source="datarepo" target="fs_root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="260" />
+              <mxPoint x="670" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#999999;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1020" width="500" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="110" y="1025" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1" value="—— Blue solid: Queue messages (Azure Service Bus)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;fontColor=#0000FF;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1050" width="300" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2" value="—— Orange solid: Blob Storage data transfer" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;fontColor=#FF8000;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1070" width="300" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3" value="—— Green dashed: HTTP/Temporal signals (completion)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;fontColor=#009900;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1090" width="300" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend4" value="—— Black solid: Webhook / API calls" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1110" width="300" height="15" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

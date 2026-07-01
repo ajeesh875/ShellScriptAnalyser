@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-16T12:00:00.000Z" agent="Kiro" version="24.0.0">
+  <diagram id="inshelter-pipeline" name="Inshelter Pipeline">
+    <mxGraphModel dx="1800" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="ESDT Scan2BIM – Inshelter (Single-Scan) Pipeline Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="20" width="700" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ESDT Portal -->
+        <mxCell id="portal" value="&lt;b&gt;ESDT Portal&lt;/b&gt;&lt;br&gt;User uploads E57 scan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="70" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- DataRepo -->
+        <mxCell id="datarepo" value="&lt;b&gt;DataRepo&lt;/b&gt;&lt;br&gt;File Storage + SAS URLs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="830" y="150" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="portal" target="datarepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ROOT MICROSERVICE -->
+        <mxCell id="root_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=20;" vertex="1" parent="1">
+          <mxGeometry x="590" y="230" width="680" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="root_title" value="&lt;b&gt;ROOT MICROSERVICE&lt;/b&gt; (NestJS, TypeScript, Port 3000)" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="235" width="450" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="webhook_ctrl" value="&lt;b&gt;Webhook Controller&lt;/b&gt;&lt;br&gt;POST /webhook&lt;br&gt;Validates E57 events" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="610" y="265" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orch_svc" value="&lt;b&gt;Orchestration Service&lt;/b&gt;&lt;br&gt;Temporal workflow lifecycle&lt;br&gt;MongoDB state tracking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="780" y="265" width="170" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="signal_ctrl" value="&lt;b&gt;Signal Controller&lt;/b&gt;&lt;br&gt;POST /api/signal/activity&lt;br&gt;Receives completion signals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="970" y="265" width="170" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="queue_proc" value="&lt;b&gt;Queue Processor&lt;/b&gt;&lt;br&gt;Routes: WEBHOOK_EVENT -&gt;&lt;br&gt;SEGMENTATION_COMPLETE -&gt;&lt;br&gt;POST_PROCESSING_COMPLETE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="610" y="345" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="temporal_wf" value="&lt;b&gt;Temporal Workflow&lt;/b&gt;&lt;br&gt;Activities:&lt;br&gt;1. generateSasUrl&lt;br&gt;2. startSegmentation&lt;br&gt;3. startPostProcessing&lt;br&gt;Waits for signals between steps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="810" y="340" width="180" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mongo_repo" value="&lt;b&gt;MongoDB&lt;/b&gt;&lt;br&gt;workflow_executions&lt;br&gt;activity_executions" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="350" width="130" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Webhook to DataRepo arrow -->
+        <mxCell id="a_dr_root" value="Webhook&lt;br&gt;(Entra ID)" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=8;" edge="1" parent="1" source="datarepo" target="webhook_ctrl">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="685" y="175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- SEGMENTATION MICROSERVICE -->
+        <mxCell id="seg_ms" value="&lt;b&gt;SEGMENTATION MICROSERVICE&lt;/b&gt;&lt;br&gt;(Python + NVIDIA GPU | KEDA Job Mode)&lt;br&gt;&lt;br&gt;&lt;b&gt;PASS 1 - Coarse:&lt;/b&gt;&lt;br&gt;Download E57 via SAS URL&lt;br&gt;• XY Crop (histogram noise removal)&lt;br&gt;• ML Inference (Pointcept, GPU)&lt;br&gt;• Image Extraction (parallel)&lt;br&gt;&lt;br&gt;&lt;b&gt;Wall Extraction:&lt;/b&gt;&lt;br&gt;• Detect wall planes, bbox2d, elevations&lt;br&gt;• Rotation detection&lt;br&gt;&lt;br&gt;&lt;b&gt;PASS 2 - Refined:&lt;/b&gt;&lt;br&gt;• Crop using wall bbox (tighter)&lt;br&gt;• Apply rotation correction&lt;br&gt;• ML Inference (refined precision)&lt;br&gt;• Inverse-rotate results back" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="530" width="280" height="310" as="geometry" />
+        </mxCell>
+
+        <!-- POST-PROCESSING MICROSERVICE -->
+        <mxCell id="pp_ms" value="&lt;b&gt;POST-PROCESSING MICROSERVICE&lt;/b&gt;&lt;br&gt;(Python, 24Gi memory)&lt;br&gt;&lt;hr&gt;&lt;b&gt;Component Extraction:&lt;/b&gt;&lt;br&gt;• Wall (plane fitting)&lt;br&gt;• Door (within wall bounds)&lt;br&gt;• Rack (OBB fitting)&lt;br&gt;• Cabinet&lt;br&gt;• Battery&lt;br&gt;• Battery Cabinet&lt;br&gt;• Rectifier&lt;br&gt;• Floor / Ceiling&lt;br&gt;&lt;br&gt;&lt;b&gt;Output:&lt;/b&gt; Geometry JSON" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="560" width="250" height="250" as="geometry" />
+        </mxCell>
+
+        <!-- IFC CREATION MICROSERVICE -->
+        <mxCell id="ifc_ms" value="&lt;b&gt;IFC CREATION MICROSERVICE&lt;/b&gt;&lt;br&gt;(C# .NET / xBIM)&lt;br&gt;&lt;hr&gt;• JSON -&gt; IFC conversion&lt;br&gt;• Maps: Wall→IfcWall, Door→IfcDoor, Rack→IfcFurniture, Cabinet→IfcElement&lt;br&gt;• Uploads IFC to Blob Storage&lt;br&gt;• Signals Root MS (HTTP)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="850" y="600" width="250" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- SERVICE BUS -->
+        <mxCell id="sbus" value="&lt;b&gt;Azure Service Bus&lt;/b&gt;&lt;br&gt;&lt;br&gt;• esdt-s2b-root-queue&lt;br&gt;• esdt-s2b-segmentation-queue&lt;br&gt;• post-processing-queue" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="530" width="200" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- BLOB STORAGE -->
+        <mxCell id="blob" value="&lt;b&gt;Azure Blob Storage&lt;/b&gt;&lt;br&gt;(Managed Identity)&lt;br&gt;&lt;br&gt;• E57 files (SAS download)&lt;br&gt;• Segmented PLY outputs&lt;br&gt;• IFC files (final)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="680" width="200" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- TEMPORAL -->
+        <mxCell id="temporal_svc" value="&lt;b&gt;Temporal&lt;/b&gt;&lt;br&gt;:7233 (gRPC)&lt;br&gt;Workflow Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="830" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Arrows: Root -> Segmentation (via queue) -->
+        <mxCell id="a_root_seg" value="segmentation-queue" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;fontSize=8;entryX=0.5;entryY=0;" edge="1" parent="1" source="queue_proc" target="seg_ms">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: Segmentation -> Post-Processing (via blob + queue) -->
+        <mxCell id="a_seg_pp" value="post-processing-queue&lt;br&gt;+ PLY via Blob" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;fontSize=8;" edge="1" parent="1" source="seg_ms" target="pp_ms">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="685" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: Post-Processing -> IFC -->
+        <mxCell id="a_pp_ifc" value="Geometry JSON" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#FF8000;fontSize=8;" edge="1" parent="1" source="pp_ms" target="ifc_ms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Signal arrows (dashed green) -->
+        <mxCell id="sig_seg" value="HTTP Signal&lt;br&gt;SEGMENTATION COMPLETED" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="seg_ms" target="signal_ctrl">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="70" y="685" />
+              <mxPoint x="70" y="230" />
+              <mxPoint x="1055" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sig_pp" value="HTTP Signal&lt;br&gt;POST PROCESSING COMPLETED" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="pp_ms" target="signal_ctrl">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="625" y="820" />
+              <mxPoint x="1170" y="820" />
+              <mxPoint x="1170" y="295" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sig_ifc" value="HTTP Signal&lt;br&gt;IFC CREATION COMPLETED" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="ifc_ms" target="signal_ctrl">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150" y="670" />
+              <mxPoint x="1150" y="295" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;—— Blue: Queue dispatch&lt;br&gt;—— Orange: Data transfer (Blob/JSON)&lt;br&gt;- - - Green: HTTP completion signals&lt;br&gt;—— Black: Webhook / API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#999999;dashed=1;fontSize=9;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="920" width="220" height="80" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

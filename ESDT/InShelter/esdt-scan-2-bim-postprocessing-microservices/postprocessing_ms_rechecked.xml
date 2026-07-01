@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-16T12:00:00.000Z" agent="Kiro" version="24.0.0">
+  <diagram id="pp-ms" name="Post-Processing Microservice">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="t" value="Inshelter Post-Processing MS – Internal Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="15" width="500" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="up" value="&lt;b&gt;UPSTREAM&lt;/b&gt;&lt;br&gt;Segmentation MS&lt;br&gt;(post-processing-queue)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="80" width="170" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="qc" value="&lt;b&gt;Queue Consumer&lt;/b&gt;&lt;br&gt;(Long-running)&lt;br&gt;Lock renewal: 30s&lt;br&gt;Dedup via MongoDB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="260" y="70" width="160" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="d1" value="&lt;b&gt;Download PLY files&lt;/b&gt;&lt;br&gt;From Blob Storage&lt;br&gt;(retry with backoff)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="470" y="70" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="geo_title" value="GEOMETRY EXTRACTION" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;fontStyle=5;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="geo_wall" value="&lt;b&gt;1. Wall&lt;/b&gt;&lt;br&gt;Histogram→contour→line fit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="185" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="geo_cab" value="&lt;b&gt;2. Cabinet&lt;/b&gt;&lt;br&gt;DBSCAN + OBB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="185" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="geo_bcab" value="&lt;b&gt;3. BatteryCabinet&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="350" y="185" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="geo_door" value="&lt;b&gt;4. Door&lt;/b&gt;&lt;br&gt;Within wall bounds" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="235" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="geo_rack" value="&lt;b&gt;5. Rack&lt;/b&gt;&lt;br&gt;OBB + Z-level equipment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="200" y="235" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="geo_rect" value="&lt;b&gt;6. Rectifier&lt;/b&gt;&lt;br&gt;Parent: battery cab" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="360" y="235" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="geo_bat" value="&lt;b&gt;7. Battery&lt;/b&gt;&lt;br&gt;Parent: battery cab" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="285" width="130" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cr_title" value="CONFLICT RESOLUTION" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;fontStyle=5;" vertex="1" parent="1">
+          <mxGeometry x="530" y="160" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="cr1" value="&lt;b&gt;Equipment Conflicts&lt;/b&gt;&lt;br&gt;Resolve overlaps between types" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="530" y="185" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="cr2" value="&lt;b&gt;Wall Conflicts&lt;/b&gt;&lt;br&gt;Equipment vs wall penetration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="530" y="235" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="cr3" value="&lt;b&gt;Floor/Ceiling&lt;/b&gt;&lt;br&gt;Slab extraction from elevations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="530" y="285" width="190" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="imgp" value="&lt;b&gt;Image Processing (YOLO)&lt;/b&gt;&lt;br&gt;Rack equipment detection from 2D images&lt;br&gt;→ merges into data['rack'][i]['Equipments']" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="530" y="340" width="240" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="json_out" value="&lt;b&gt;Write JSON&lt;/b&gt;&lt;br&gt;{dir_name}.json&lt;br&gt;All geometry data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="200" y="370" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ifc_create" value="&lt;b&gt;IFC Creation&lt;/b&gt;&lt;br&gt;dotnet IFCCreator.dll &amp;lt;json&amp;gt;&lt;br&gt;(.NET subprocess, 5min timeout)&lt;br&gt;→ New_{filename}.ifc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="200" y="440" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="upload_dr" value="&lt;b&gt;Upload IFC to DataRepo&lt;/b&gt;&lt;br&gt;Cognito token → SAS URL → PUT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="200" y="520" width="200" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="upload_bk" value="&lt;b&gt;Backup Upload&lt;/b&gt;&lt;br&gt;segmentation-store/ifc/{fileId}.ifc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="440" y="520" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="signal" value="&lt;b&gt;Signal Root MS&lt;/b&gt;&lt;br&gt;HTTP POST /api/signal/activity&lt;br&gt;activityName: POST_PROCESSING&lt;br&gt;status: COMPLETED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="585" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="down" value="&lt;b&gt;DOWNSTREAM&lt;/b&gt;&lt;br&gt;Root MS receives signal&lt;br&gt;→ Workflow COMPLETED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="590" width="180" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="up" target="qc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="qc" target="d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="d1" target="geo_wall">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="150" />
+              <mxPoint x="135" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="geo_bat" target="json_out">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="345" />
+              <mxPoint x="275" y="345" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="json_out" target="ifc_create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="ifc_create" target="upload_dr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="upload_dr" target="signal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#009900;fontSize=8;" edge="1" parent="1" source="signal" target="down">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

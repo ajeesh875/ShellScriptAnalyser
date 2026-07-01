@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-16T12:00:00.000Z" agent="Kiro" version="24.0.0">
+  <diagram id="seg-ms" name="Segmentation Microservice">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="&lt;b&gt;Inshelter Segmentation MS – Internal Architecture (2-Pass Pipeline)&lt;/b&gt;" style="text;html=1;align=center;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="15" width="600" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="up" value="&lt;b&gt;UPSTREAM&lt;/b&gt;&lt;br&gt;Root MS (segmentation-queue)" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="qc" value="&lt;b&gt;Queue Consumer&lt;/b&gt;&lt;br&gt;(Job Mode)&lt;br&gt;parses → dedup → download" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="240" y="90" width="200" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1" value="&lt;b&gt;Download E57&lt;/b&gt;&lt;br&gt;SAS URL → /tmp/{fileId}/" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="90" width="160" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1_crop" value="&lt;b&gt;XY Crop&lt;/b&gt;&lt;br&gt;Histogram noise removal" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="80" y="210" width="170" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1_infer" value="&lt;b&gt;ML Inference (GPU)&lt;/b&gt;&lt;br&gt;Pointcept → inference/*.ply" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="80" y="290" width="170" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="img" value="&lt;b&gt;Image Extraction&lt;/b&gt;&lt;br&gt;(Parallel) → images/*.jpg" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="300" y="210" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="wall" value="&lt;b&gt;Wall Extraction&lt;/b&gt;&lt;br&gt;detect planes, bbox2d, rotation" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="300" y="290" width="200" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2_decide" value="is_rotated?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="210" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2_rot" value="&lt;b&gt;Rotate + Crop&lt;/b&gt;&lt;br&gt;axis-align → bbox" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="560" y="290" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2_direct" value="&lt;b&gt;Direct Crop&lt;/b&gt;&lt;br&gt;bbox crop only" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="720" y="290" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2_infer" value="&lt;b&gt;ML Inference (Pass 2)&lt;/b&gt;&lt;br&gt;higher precision → inference_pass2/*.ply" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="580" y="365" width="230" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="upload" value="&lt;b&gt;Upload to Blob&lt;/b&gt;&lt;br&gt;{fileId}/inference/*.ply etc" style="rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="200" y="460" width="230" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="sig_root" value="&lt;b&gt;Signal Root MS&lt;/b&gt;&lt;br&gt;SEGMENTATION COMPLETED" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="460" width="210" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="send_pp" value="&lt;b&gt;Dispatch to Post-Processing&lt;/b&gt;&lt;br&gt;→ post-processing-queue" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="545" width="230" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="down" value="&lt;b&gt;DOWNSTREAM&lt;/b&gt;&lt;br&gt;Post-Processing MS" style="rounded=1;html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="545" width="170" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a1" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="up" target="qc">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="qc" target="d1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="d1" target="p1_crop">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="165"/>
+              <mxPoint x="165" y="165"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="p1_crop" target="p1_infer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a5" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="p1_infer" target="wall">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a6" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="wall" target="p2_decide">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a7" value="yes" style="edgeStyle=orthogonalEdgeStyle;fontSize=8;" edge="1" parent="1" source="p2_decide" target="p2_rot">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a8" value="no" style="edgeStyle=orthogonalEdgeStyle;fontSize=8;" edge="1" parent="1" source="p2_decide" target="p2_direct">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a9" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="p2_rot" target="p2_infer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a10" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="p2_direct" target="p2_infer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a11" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="p2_infer" target="upload">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="695" y="440"/>
+              <mxPoint x="315" y="440"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a12" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="upload" target="sig_root">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a13" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="upload" target="send_pp">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="572"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a14" value="" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0000FF;" edge="1" parent="1" source="send_pp" target="down">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

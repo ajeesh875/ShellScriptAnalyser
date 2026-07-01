@@ -1,0 +1,1295 @@
+# Inshelter Pipeline — Cloud & Infrastructure Requirements
+
+ 
+
+## Document Purpose
+
+ 
+
+This document provides a complete, professional specification of all cloud services, infrastructure components, networking, security, and operational requirements needed to deploy and run the ESDT Scan2BIM Inshelter (Single-Scan) pipeline in production. It is intended for:
+
+ 
+
+- **Infrastructure/Platform teams** provisioning cloud resources
+
+- **DevOps engineers** configuring CI/CD and GitOps
+
+- **Security teams** reviewing access patterns and compliance
+
+- **Architects** planning capacity and disaster recovery
+
+- **New team members** understanding the deployment landscape
+
+ 
+
+---
+
+ 
+
+## Table of Contents
+
+ 
+
+1. [Executive Summary](#1-executive-summary)
+
+2. [Cloud Platform Overview](#2-cloud-platform-overview)
+
+3. [Compute Infrastructure (AKS)](#3-compute-infrastructure-aks)
+
+4. [Messaging Infrastructure (Azure Service Bus)](#4-messaging-infrastructure-azure-service-bus)
+
+5. [Storage Infrastructure (Azure Blob Storage)](#5-storage-infrastructure-azure-blob-storage)
+
+6. [Database Infrastructure (MongoDB Atlas)](#6-database-infrastructure-mongodb-atlas)
+
+7. [Workflow Engine (Temporal)](#7-workflow-engine-temporal)
+
+8. [Identity & Access Management](#8-identity--access-management)
+
+9. [Networking & Ingress](#9-networking--ingress)
+
+10. [Container Registry](#10-container-registry)
+
+11. [GitOps & Deployment (Flux CD)](#11-gitops--deployment-flux-cd)
+
+12. [Monitoring & Observability](#12-monitoring--observability)
+
+13. [Security Requirements](#13-security-requirements)
+
+14. [Multi-Environment Topology](#14-multi-environment-topology)
+
+15. [Capacity Planning & Sizing](#15-capacity-planning--sizing)
+
+16. [Disaster Recovery & High Availability](#16-disaster-recovery--high-availability)
+
+17. [Cost Estimation Framework](#17-cost-estimation-framework)
+
+ 
+
+---
+
+ 
+
+## 1. Executive Summary
+
+ 
+
+The Inshelter pipeline requires the following cloud infrastructure:
+
+ 
+
+| Category | Service | Provider | Purpose |
+
+|----------|---------|----------|---------|
+
+| Compute | Azure Kubernetes Service (AKS) | Azure | Container orchestration |
+
+| GPU Compute | AKS GPU Node Pool | Azure | ML inference (NVIDIA) |
+
+| Messaging | Azure Service Bus | Azure | Async inter-service communication |
+
+| Object Storage | Azure Blob Storage | Azure | Point cloud files, IFC outputs |
+
+| Database | MongoDB Atlas | MongoDB Inc. | Workflow state, job tracking |
+
+| Workflow Engine | Temporal | Self-hosted on AKS | Durable workflow orchestration |
+
+| Auth (M2M) | AWS Cognito | AWS | Machine-to-machine tokens (DataRepo) |
+
+| Auth (User) | Microsoft Entra ID | Azure | User/portal authentication |
+
+| Container Registry | Azure Container Registry | Azure | Docker image storage |
+
+| GitOps | Flux CD | CNCF (on AKS) | Continuous deployment |
+
+| Ingress | NGINX Ingress Controller | CNCF (on AKS) | HTTP routing & TLS |
+
+| Autoscaling | KEDA | CNCF (on AKS) | Event-driven pod scaling |
+
+| Secrets | Azure Key Vault + SOPS | Azure | Secret management |
+
+| DNS | Azure DNS | Azure | Domain resolution |
+
+| TLS | cert-manager + Let's Encrypt | CNCF (on AKS) | Certificate automation |
+
+ 
+
+---
+
+ 
+
+## 2. Cloud Platform Overview
+
+ 
+
+### Primary Cloud: Microsoft Azure
+
+ 
+
+All compute, storage, and networking runs on Azure. The solution uses Azure-native services with Managed Identity for secure, credential-less authentication between services.
+
+ 
+
+### Secondary Cloud: AWS (Limited)
+
+ 
+
+AWS Cognito is used solely for machine-to-machine authentication when calling the DataRepo API. This is a cross-cloud dependency inherited from the ESDT platform.
+
+ 
+
+### Third-Party: MongoDB Atlas
+
+ 
+
+MongoDB Atlas runs as a managed database service, accessed via Private Link from the AKS cluster.
+
+ 
+
+---
+
+ 
+
+## 3. Compute Infrastructure (AKS)
+
+ 
+
+### Cluster Configuration
+
+ 
+
+| Parameter | Value | Notes |
+
+|-----------|-------|-------|
+
+| Service | Azure Kubernetes Service (AKS) | Managed K8s |
+
+| Kubernetes Version | 1.28+ | Latest stable |
+
+| Namespace | `esdt-s2b` | All pipeline workloads |
+
+| Network Plugin | Azure CNI | Pod-level networking |
+
+| Network Policy | Calico | Inter-pod isolation |
+
+ 
+
+### Node Pools
+
+ 
+
+#### Standard Node Pool (Root MS + Post-Processing MS)
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| VM Size | Standard_D8s_v3 or equivalent |
+
+| vCPUs per node | 8 |
+
+| Memory per node | 32 GiB |
+
+| Min nodes | 2 |
+
+| Max nodes | 5 |
+
+| OS Disk | 128 GB Premium SSD |
+
+| Autoscaling | Cluster Autoscaler enabled |
+
+ 
+
+#### GPU Node Pool (Segmentation MS)
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| VM Size | Standard_NC24ads_A100_v4 (or NC-series with NVIDIA GPU) |
+
+| GPU | 1x NVIDIA A100 (or T4/V100) |
+
+| vCPUs per node | 24 |
+
+| Memory per node | 220 GiB |
+
+| Min nodes | 0 (scale to zero) |
+
+| Max nodes | 5 |
+
+| Node Selector | `gpu-size: xlarge` |
+
+| Taint | `sku=gpu:NoSchedule` |
+
+| OS Disk | 256 GB Premium SSD |
+
+| NVIDIA Driver | Installed via AKS GPU operator |
+
+ 
+
+### Pod Resource Allocations
+
+ 
+
+| Service | CPU Request | CPU Limit | Memory Request | Memory Limit | GPU |
+
+|---------|------------|-----------|----------------|--------------|-----|
+
+| Root MS | 750m | 1524m | 1840Mi | 2048Mi | — |
+
+| Segmentation MS | 4000m | 16000m | 16Gi | 200Gi | 1x NVIDIA |
+
+| Post-Processing MS | 750m | 1524m | 20480Mi | 24576Mi | — |
+
+| Temporal Frontend | 500m | 2000m | 1Gi | 2Gi | — |
+
+| Temporal History | 500m | 2000m | 1Gi | 4Gi | — |
+
+ 
+
+### Scaling Configuration
+
+ 
+
+| Service | Min Replicas | Max Replicas | Scaling Trigger |
+
+|---------|-------------|-------------|-----------------|
+
+| Root MS | 1 | 1 | Static (no autoscaling) |
+
+| Segmentation MS | 0 | 5 | KEDA: Service Bus queue depth |
+
+| Post-Processing MS | 1 | 1 | Static (no autoscaling) |
+
+ 
+
+### KEDA Configuration (Segmentation)
+
+ 
+
+```yaml
+
+pollingInterval: 15 seconds
+
+minReplicaCount: 0
+
+maxReplicaCount: 5
+
+scalingStrategy: accurate
+
+activeDeadlineSeconds: 7200    # Job timeout: 2 hours
+
+ttlSecondsAfterFinished: 3600  # Cleanup after 1 hour
+
+triggers:
+
+  - type: azure-servicebus
+
+    queueName: esdt-s2b-segmentation-queue
+
+    messageCount: "1"           # Scale up on 1 message
+
+    activationMessageCount: "0" # Activate from 0 → 1 immediately
+
+```
+
+ 
+
+---
+
+ 
+
+## 4. Messaging Infrastructure (Azure Service Bus)
+
+ 
+
+### Namespace Configuration
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Service | Azure Service Bus (Premium tier) |
+
+| SKU | Premium (for AMQP over WebSocket, large messages) |
+
+| Namespace | `esdt-{env}-{region}-namespace` |
+
+| Authentication | Azure Managed Identity (azure-identity mode) |
+
+| TLS | Enforced (TLS 1.2+) |
+
+ 
+
+### Queues Required (Inshelter)
+
+ 
+
+| Queue Name | Purpose | Max Delivery | Lock Duration |
+
+|------------|---------|--------------|---------------|
+
+| `esdt-s2b-root-queue` | Webhook events + completion signals | 10 | 5 min |
+
+| `esdt-s2b-segmentation-queue` | Segmentation task dispatch | 3 | 10 min |
+
+| `esdt-s2b-post-processing-queue` | Post-processing task dispatch | 3 | 10 min |
+
+| `esdt-s2b-temporal-signal-queue` | Legacy signal queue (deprecated) | 5 | 1 min |
+
+ 
+
+### Queue Properties
+
+ 
+
+| Property | Value | Rationale |
+
+|----------|-------|-----------|
+
+| Max Size | 5 GB | Large point cloud metadata |
+
+| Message TTL | 7 days | Allow for GPU scale-up delay |
+
+| Lock Duration | 5-10 min | Long processing times |
+
+| Dead Letter Queue | Enabled per queue | Poison message capture |
+
+| Duplicate Detection | 10 min window | Prevent reprocessing |
+
+| Sessions | Disabled | Not required |
+
+| Partitioning | Disabled | Premium tier |
+
+ 
+
+### Role Assignments (RBAC)
+
+ 
+
+Each queue requires two role assignments for the Managed Identity:
+
+ 
+
+| Role | Scope | Purpose |
+
+|------|-------|---------|
+
+| Azure Service Bus Data Sender | Per queue | Send messages |
+
+| Azure Service Bus Data Receiver | Per queue | Receive messages |
+
+ 
+
+---
+
+ 
+
+## 5. Storage Infrastructure (Azure Blob Storage)
+
+ 
+
+### Storage Accounts
+
+ 
+
+| Account | Purpose | Tier | Redundancy |
+
+|---------|---------|------|------------|
+
+| `esdt{env}{region}s2b` | Segmented PLY + IFC outputs | Hot | LRS (test) / GRS (prod) |
+
+| `esdt{env}{region}blob` | General blob storage | Hot | LRS (test) / GRS (prod) |
+
+ 
+
+### Containers
+
+ 
+
+| Container | Purpose | Access Level |
+
+|-----------|---------|--------------|
+
+| `segmentation-store` | Segmented PLY files, IFC backups, images | Private |
+
+ 
+
+### Blob Lifecycle
+
+ 
+
+| Rule | Condition | Action |
+
+|------|-----------|--------|
+
+| Move to Cool | 30 days after creation | Reduce cost for infrequently accessed PLY |
+
+| Delete | 90 days after creation | Clean up old processing artifacts |
+
+ 
+
+### Access Configuration
+
+ 
+
+| Method | Used For |
+
+|--------|----------|
+
+| Managed Identity (DefaultAzureCredential) | Production - pod-level access |
+
+| SAS Tokens | DataRepo download/upload (time-limited) |
+
+| Connection String | Local development only |
+
+ 
+
+### Sizing Estimates
+
+ 
+
+| Data Type | Size per File | Retention | Monthly Volume (est.) |
+
+|-----------|--------------|-----------|----------------------|
+
+| E57 input | 500 MB - 5 GB | 30 days | 50-200 files |
+
+| Segmented PLY | 100 MB - 1 GB | 90 days | 50-200 sets |
+
+| IFC output | 5 - 50 MB | Permanent (DataRepo) | 50-200 files |
+
+| Images | 50-200 MB per scan | 90 days | 50-200 sets |
+
+ 
+
+---
+
+ 
+
+## 6. Database Infrastructure (MongoDB Atlas)
+
+ 
+
+### Cluster Configuration
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Service | MongoDB Atlas |
+
+| Cluster Tier | M30+ (production), M10 (test) |
+
+| MongoDB Version | 7.0+ |
+
+| Region | Same as AKS (East US / West US / UK) |
+
+| Replication | 3-node replica set |
+
+| Connection | Private Link (Azure Private Endpoint) |
+
+ 
+
+### Databases & Collections
+
+ 
+
+| Database | Collection | Purpose | Estimated Size |
+
+|----------|-----------|---------|----------------|
+
+| `esdt-scan2bim` | `workflow_executions` | Workflow state tracking | ~1 KB per workflow |
+
+| `esdt-scan2bim` | `activity_executions` | Activity logs per step | ~2 KB per activity |
+
+| `esdt-scan2bim` | `app_logs` | Application logs (TTL) | ~500 bytes per log |
+
+| `esdt-scan2bim` | `jobs` | Job deduplication tracking | ~500 bytes per job |
+
+ 
+
+### Indexes Required
+
+ 
+
+```javascript
+
+// workflow_executions
+
+db.workflow_executions.createIndex({ workflowId: 1 }, { unique: true })
+
+db.workflow_executions.createIndex({ status: 1, createdAt: -1 })
+
+ 
+
+// activity_executions
+
+db.activity_executions.createIndex({ activityId: 1 }, { unique: true })
+
+db.activity_executions.createIndex({ workflowId: 1, activityName: 1 })
+
+ 
+
+// app_logs (TTL: 30 days)
+
+db.app_logs.createIndex({ createdAt: 1 }, { expireAfterSeconds: 2592000 })
+
+```
+
+ 
+
+### Authentication
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Auth Method | Username/Password (from K8s Secret) |
+
+| Secret Name | `esdt-s2b-mongo-connection-secret` |
+
+| Keys | `username`, `password` |
+
+| Connection String | `mongodb+srv://{user}:{pass}@{nodes}/{dbName}` |
+
+ 
+
+---
+
+ 
+
+## 7. Workflow Engine (Temporal)
+
+ 
+
+### Deployment
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Service | Temporal (self-hosted on AKS) |
+
+| Namespace (Temporal) | `temporal` (K8s namespace) |
+
+| Namespace (Workflow) | `default` (Temporal namespace) |
+
+| Frontend Address | `temporal-frontend.temporal.svc:7233` |
+
+| Protocol | gRPC |
+
+| Persistence | PostgreSQL (or Cassandra) |
+
+| Visibility | Elasticsearch |
+
+ 
+
+### Components Required
+
+ 
+
+| Component | Replicas | CPU | Memory | Purpose |
+
+|-----------|----------|-----|--------|---------|
+
+| Frontend | 2 | 500m | 1Gi | gRPC API gateway |
+
+| History | 2 | 1000m | 2Gi | Workflow state management |
+
+| Matching | 2 | 500m | 1Gi | Task queue routing |
+
+| Worker | 1 | 500m | 512Mi | System workflows |
+
+| Web UI | 1 | 200m | 256Mi | Debugging interface |
+
+ 
+
+### Temporal Worker (Application-level)
+
+ 
+
+The Root MS runs a **separate Temporal Worker process** (`yarn start:worker`) that executes activity implementations. This must run alongside the main NestJS application.
+
+ 
+
+### Configuration
+
+ 
+
+```env
+
+TEMPORAL_ADDRESS=temporal-frontend.temporal.svc:7233
+
+TEMPORAL_NAMESPACE=default
+
+```
+
+ 
+
+---
+
+ 
+
+## 8. Identity & Access Management
+
+ 
+
+### Azure Workload Identity
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Managed Identity Type | User-Assigned |
+
+| Client ID | Per-environment (e.g., `a88b4d42-f975-49a9-9c57-660029538295`) |
+
+| ServiceAccount | `esdt-{env}-aks-esdt-s2b-uai` |
+
+| K8s Label | `azure.workload.identity/use: "true"` |
+
+ 
+
+### RBAC Role Assignments
+
+ 
+
+| Resource | Role | Identity |
+
+|----------|------|----------|
+
+| Service Bus Namespace | Data Sender + Data Receiver | Workload Identity |
+
+| Blob Storage Account | Storage Blob Data Contributor | Workload Identity |
+
+| Container Registry | AcrPull | AKS Kubelet Identity |
+
+| Key Vault | Secrets User | Workload Identity |
+
+ 
+
+### AWS Cognito (Cross-Cloud)
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Service | AWS Cognito User Pool |
+
+| Grant Type | `client_credentials` (M2M) |
+
+| Secret Storage | K8s Secret: `s2b-{env}-cognito-secrets` |
+
+| Keys | `CLIENT_ID`, `CLIENT_SECRET`, `TOKEN_ENDPOINT` |
+
+| Token Expiry | 3600 seconds (1 hour) |
+
+| Purpose | Authenticating to DataRepo API |
+
+ 
+
+### Microsoft Entra ID
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Purpose | User authentication for ESDT Portal |
+
+| Whitelisted Client IDs | Multiple application registrations |
+
+| Token Validation | Performed by Root MS auth guard |
+
+ 
+
+---
+
+ 
+
+## 9. Networking & Ingress
+
+ 
+
+### NGINX Ingress Controller
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Controller | NGINX (nginx-ingress class) |
+
+| Type | Mergeable ingress (master + minion) |
+
+| TLS | Terminated at ingress (cert-manager) |
+
+| Host | `api.{env}.sitedigitaltwin.connected-operations.ericsson.net` |
+
+ 
+
+### Path Routing
+
+ 
+
+| Path Pattern | Target Service | Port | Rewrite |
+
+|--------------|---------------|------|---------|
+
+| `/orchestrator(/\|$)(.*)` | Root MS | 3000 | `/api/$2` |
+
+| `/segmentation(/\|$)(.*)` | Segmentation MS | 5000 | `/api/$2` |
+
+| `/postprocess(/\|$)(.*)` | Post-Processing MS | 4000 | `/api/$2` |
+
+ 
+
+### Ingress Annotations
+
+ 
+
+```yaml
+
+nginx.org/client-max-body-size: "1024m"        # Large file uploads
+
+nginx.org/proxy-connect-timeout: "300s"         # Long GPU processing
+
+nginx.org/proxy-send-timeout: "120s"
+
+nginx.org/proxy-read-timeout: "120s"
+
+nginx.org/client-body-buffer-size: "1024m"
+
+nginx.org/proxy-buffers: 16 8k
+
+nginx.org/proxy-max-temp-file-size: "4096m"
+
+```
+
+ 
+
+### CORS Configuration
+
+ 
+
+```
+
+Allowed Origin: ^https://.*\.ericsson\.net$
+
+```
+
+ 
+
+### Internal Service Communication
+
+ 
+
+All inter-service HTTP calls use Kubernetes internal DNS:
+
+```
+
+http://{service-name}.esdt-s2b.svc.cluster.local:{port}/api/...
+
+```
+
+ 
+
+---
+
+ 
+
+## 10. Container Registry
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Service | Azure Container Registry (ACR) |
+
+| Name | `esdtcommonacr` |
+
+| SKU | Premium (geo-replication, private link) |
+
+| Image Pattern | `esdtcommonacr.azurecr.io/esdt-scan-2-bim-{service}:{version}` |
+
+| Auth | AKS Kubelet Managed Identity (AcrPull role) |
+
+| Scanning | Vulnerability scanning enabled |
+
+| Retention | 90-day tag retention policy |
+
+ 
+
+---
+
+ 
+
+## 11. GitOps & Deployment (Flux CD)
+
+ 
+
+### Flux CD Components
+
+ 
+
+| Component | Purpose |
+
+|-----------|---------|
+
+| Source Controller | Watches Git repo for changes |
+
+| Kustomize Controller | Applies Kustomize overlays |
+
+| Helm Controller | Manages HelmRelease resources |
+
+| Notification Controller | Alerts on deployment failures |
+
+ 
+
+### Repository Structure
+
+ 
+
+```
+
+esdt-s2b-gitops/
+
+├── apps/
+
+│   ├── base/                  # Shared HelmRelease definitions
+
+│   ├── dev/                   # Dev environment values
+
+│   ├── test-eus/              # Test East US values
+
+│   └── prod-us/               # Production US values
+
+├── infrastructure/
+
+│   ├── base/                  # Shared infra (cert-manager, ingress)
+
+│   └── test-eus/              # Queue + role assignment definitions
+
+└── clusters/
+
+    └── test-eus/              # Cluster-level Flux configuration
+
+```
+
+ 
+
+### Helm Chart Versions (Inshelter)
+
+ 
+
+| Chart | Version | Registry |
+
+|-------|---------|----------|
+
+| `esdt-scan-2-bim-root-microservice` | 0.16.0 | esdt-common-helm |
+
+| `esdt-scan-2-bim-segmentation-microservice` | 1.5.23 | esdt-common-helm |
+
+| `esdt-scan-2-bim-post-processing-microservice` | 1.5.8 | esdt-common-helm |
+
+ 
+
+### Secret Management (SOPS)
+
+ 
+
+| Parameter | Value |
+
+|-----------|-------|
+
+| Encryption | SOPS with Azure Key Vault |
+
+| Key Type | RSA 2048 |
+
+| Encrypted Files | K8s Secrets (connection strings, passwords) |
+
+| Decryption | Flux SOPS integration (in-cluster) |
+
+ 
+
+---
+
+ 
+
+## 12. Monitoring & Observability
+
+ 
+
+### Required Monitoring Stack
+
+ 
+
+| Component | Purpose | Implementation |
+
+|-----------|---------|----------------|
+
+| Metrics | Resource utilization, queue depth, latencies | Prometheus + Grafana |
+
+| Logging | Structured application logs | Azure Monitor / ELK |
+
+| Tracing | Distributed request tracing | OpenTelemetry (planned) |
+
+| Alerting | Threshold-based alerts | Grafana Alerting / PagerDuty |
+
+ 
+
+### Key Metrics to Monitor
+
+ 
+
+| Metric | Source | Alert Threshold |
+
+|--------|--------|-----------------|
+
+| Queue depth (segmentation) | Service Bus | > 10 messages for > 5 min |
+
+| Queue depth (post-processing) | Service Bus | > 5 messages for > 10 min |
+
+| GPU node availability | AKS | 0 ready nodes for > 2 min |
+
+| Pod restart count | Kubernetes | > 3 restarts in 10 min |
+
+| Workflow duration | MongoDB/Temporal | > 120 min |
+
+| Failed workflows | MongoDB | > 5% failure rate |
+
+| Memory usage (post-proc) | Kubernetes | > 22Gi (of 24Gi limit) |
+
+| Blob storage capacity | Azure | > 80% of quota |
+
+ 
+
+### Health Endpoints
+
+ 
+
+| Service | Endpoint | Port | Probe Type |
+
+|---------|----------|------|------------|
+
+| Root MS | `/api/health` | 3000 | Liveness + Readiness |
+
+| Post-Processing MS | `/api/health` | 4000 | Liveness + Readiness |
+
+| Segmentation MS | (job mode, no health endpoint) | — | Job completion |
+
+ 
+
+---
+
+ 
+
+## 13. Security Requirements
+
+ 
+
+### Network Security
+
+ 
+
+| Requirement | Implementation |
+
+|-------------|----------------|
+
+| Cluster isolation | AKS with Azure CNI + Network Policies |
+
+| Private endpoints | MongoDB Atlas Private Link, ACR Private Link |
+
+| No public IPs on pods | Internal load balancer + NGINX ingress |
+
+| TLS everywhere | cert-manager with Let's Encrypt (external), mTLS (internal planned) |
+
+| Egress filtering | Azure Firewall / NSG rules |
+
+ 
+
+### Application Security
+
+ 
+
+| Requirement | Implementation |
+
+|-------------|----------------|
+
+| Auth (external) | Entra ID tokens validated by Root MS |
+
+| Auth (internal) | Cognito M2M tokens for DataRepo, no auth for inter-service HTTP (internal cluster only) |
+
+| Secrets | Never in code; K8s Secrets + SOPS encryption |
+
+| RBAC | Kubernetes RBAC + Azure RBAC (least privilege) |
+
+| Image scanning | ACR vulnerability scanning, Trivy in CI |
+
+| CORS | Restricted to `*.ericsson.net` |
+
+| Dependency scanning | SAST in GitLab CI pipeline |
+
+ 
+
+### ABAC (Attribute-Based Access Control)
+
+ 
+
+| Service | ABAC Enabled | Provider |
+
+|---------|-------------|----------|
+
+| Root MS | No (inject: false) | Styra/OPA |
+
+| Segmentation MS | No (inject: false) | Styra/OPA |
+
+| Post-Processing MS | Yes (inject: true) | Styra/OPA |
+
+ 
+
+---
+
+ 
+
+## 14. Multi-Environment Topology
+
+ 
+
+### Environments
+
+ 
+
+| Environment | Region | Purpose | SLA |
+
+|-------------|--------|---------|-----|
+
+| dev | East US | Developer integration | None |
+
+| test-eus | East US | QA testing | None |
+
+| test-wus | West US | Secondary test | None |
+
+| acc-eus | East US | Acceptance/staging | 99.5% |
+
+| acc-wus | West US | Secondary acceptance | 99.5% |
+
+| prod-us | East US | Production (Americas) | 99.9% |
+
+| prod-uk | UK South | Production (EMEA) | 99.9% |
+
+| prod-wus | West US | Production (West) | 99.9% |
+
+ 
+
+### Environment-Specific Resources
+
+ 
+
+| Resource | Naming Pattern | Example (test-eus) |
+
+|----------|---------------|-------------------|
+
+| Service Bus | `esdt-{env}-namespace` | `esdt-test-eus-namespace` |
+
+| Blob Storage | `esdt{env}s2b` | `esdttesteuss2b` |
+
+| MongoDB | `esdt-{env}-mongodb-cluster` | `esdt-test-eus-mongodb-cluster` |
+
+| AKS | `esdt-{env}-aks` | `esdt-test-eus-aks` |
+
+| Managed Identity | `esdt-{env}-aks-esdt-s2b-uai` | `esdt-test-eus-aks-esdt-s2b-uai` |
+
+| DNS Host | `api.{env}.sitedigitaltwin...` | `api.test-eus.sitedigitaltwin.connected-operations.ericsson.net` |
+
+ 
+
+---
+
+ 
+
+## 15. Capacity Planning & Sizing
+
+ 
+
+### Throughput Assumptions
+
+ 
+
+| Metric | Value | Notes |
+
+|--------|-------|-------|
+
+| Scans per day (peak) | 50 | Business hours |
+
+| Avg E57 file size | 1-3 GB | Compressed |
+
+| Avg processing time | 45 min | End-to-end |
+
+| Concurrent jobs (max) | 5 | GPU-limited |
+
+| Peak storage growth | 500 GB/month | Before lifecycle cleanup |
+
+ 
+
+### Bottleneck Analysis
+
+ 
+
+| Resource | Bottleneck Risk | Mitigation |
+
+|----------|----------------|------------|
+
+| GPU nodes | High — limited availability, expensive | KEDA scale-to-zero, spot instances |
+
+| Post-Processing memory | Medium — 24Gi limit for large scans | Streaming algorithms, file-based processing |
+
+| Service Bus throughput | Low — Premium tier handles thousands/sec | N/A |
+
+| MongoDB connections | Low — connection pooling | Pool size limit per service |
+
+| Blob Storage IOPS | Low — block blob sequential R/W | N/A |
+
+ 
+
+---
+
+ 
+
+## 16. Disaster Recovery & High Availability
+
+ 
+
+### RTO/RPO Targets
+
+ 
+
+| Environment | RTO | RPO | Notes |
+
+|-------------|-----|-----|-------|
+
+| Production | 1 hour | 0 (no data loss) | Active-passive or multi-region |
+
+| Acceptance | 4 hours | 1 hour | Single region |
+
+| Test/Dev | 24 hours | 24 hours | Rebuild from GitOps |
+
+ 
+
+### HA Design
+
+ 
+
+| Component | HA Strategy |
+
+|-----------|-------------|
+
+| AKS | Multi-AZ node pools, pod anti-affinity |
+
+| MongoDB Atlas | 3-node replica set (automatic failover) |
+
+| Service Bus | Zone-redundant (Premium tier) |
+
+| Blob Storage | GRS (production) / LRS (test) |
+
+| Temporal | Multi-replica frontend/history/matching |
+
+| Ingress | Multiple NGINX replicas + Azure LB |
+
+ 
+
+### Backup Strategy
+
+ 
+
+| Data | Backup Method | Frequency | Retention |
+
+|------|--------------|-----------|-----------|
+
+| MongoDB | Atlas continuous backup | Point-in-time | 7 days (test), 30 days (prod) |
+
+| Blob Storage | Soft delete + versioning | Automatic | 30 days |
+
+| Git (GitOps) | Git history | Every commit | Permanent |
+
+| K8s Secrets | SOPS encrypted in Git | Every change | Permanent |
+
+ 
+
+---
+
+ 
+
+## 17. Cost Estimation Framework
+
+ 
+
+### Monthly Cost Drivers (Production, Single Region)
+
+ 
+
+| Resource | SKU / Tier | Estimated Monthly Cost |
+
+|----------|-----------|----------------------|
+
+| AKS Standard Nodes (2x D8s_v3) | Pay-as-you-go | ~$560 |
+
+| AKS GPU Nodes (1x NC24ads_A100) | Spot/Pay-as-you-go | ~$2,400-$7,200 |
+
+| Azure Service Bus Premium (1 MU) | Premium | ~$680 |
+
+| Azure Blob Storage (1 TB hot) | Hot LRS | ~$21 |
+
+| MongoDB Atlas (M30) | Dedicated | ~$400 |
+
+| Azure Container Registry Premium | Premium | ~$167 |
+
+| Azure Key Vault | Standard | ~$5 |
+
+| Network (egress ~500 GB) | Standard | ~$45 |
+
+| **Estimated Total** | | **~$4,300-$9,100/month** |
+
+ 
+
+### Cost Optimization Levers
+
+ 
+
+| Strategy | Savings | Trade-off |
+
+|----------|---------|-----------|
+
+| GPU spot instances | 60-80% on GPU | Possible preemption |
+
+| KEDA scale-to-zero | Eliminates GPU idle cost | 2-5 min cold start |
+
+| Reserved instances (1yr) | 30-40% on standard nodes | Commitment required |
+
+| Blob lifecycle (cool tier) | 50% on old data | Slower access to archived files |
+
+| Dev/Test pricing | 50-70% on non-prod | Limited SLA |
+
+ 
