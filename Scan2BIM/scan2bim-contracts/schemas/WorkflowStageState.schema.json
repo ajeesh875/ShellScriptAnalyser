@@ -1,0 +1,230 @@
+{
+  "$defs": {
+    "CommonError": {
+      "additionalProperties": false,
+      "properties": {
+        "errorCode": {
+          "pattern": "^[A-Z][A-Z0-9_]+$",
+          "title": "Errorcode",
+          "type": "string"
+        },
+        "errorCategory": {
+          "pattern": "^[A-Z][A-Z0-9_]+$",
+          "title": "Errorcategory",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "failedStage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkflowStage"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attempt": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attempt"
+        },
+        "detailsReference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detailsreference"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorCategory",
+        "message",
+        "retryable"
+      ],
+      "title": "CommonError",
+      "type": "object"
+    },
+    "StageStatus": {
+      "enum": [
+        "PENDING",
+        "IN_PROGRESS",
+        "RETRY_SCHEDULED",
+        "COMPLETED",
+        "FAILED",
+        "CANCELLED",
+        "TIMED_OUT"
+      ],
+      "title": "StageStatus",
+      "type": "string"
+    },
+    "WorkflowStage": {
+      "enum": [
+        "SEGMENTATION",
+        "GEOMETRY_EXTRACTION",
+        "IFC_GENERATION",
+        "IFC_VALIDATION",
+        "ARTIFACT_PREPARATION",
+        "COMPLETED"
+      ],
+      "title": "WorkflowStage",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "stage": {
+      "$ref": "#/$defs/WorkflowStage"
+    },
+    "status": {
+      "$ref": "#/$defs/StageStatus"
+    },
+    "attempt": {
+      "minimum": 1,
+      "title": "Attempt",
+      "type": "integer"
+    },
+    "commandId": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Commandid"
+    },
+    "startedAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Startedat"
+    },
+    "completedAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Completedat"
+    },
+    "expectedSuccessEvent": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expectedsuccessevent"
+    },
+    "expectedFailureEvent": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expectedfailureevent"
+    },
+    "resultSubjectId": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resultsubjectid"
+    },
+    "resultSubjectType": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resultsubjecttype"
+    },
+    "lastAppliedEventId": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lastappliedeventid"
+    },
+    "failure": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CommonError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "stage",
+    "status",
+    "attempt"
+  ],
+  "title": "WorkflowStageState",
+  "type": "object"
+}

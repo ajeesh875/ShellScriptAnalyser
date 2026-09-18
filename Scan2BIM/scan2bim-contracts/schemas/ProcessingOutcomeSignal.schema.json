@@ -1,0 +1,202 @@
+{
+  "$defs": {
+    "CommonError": {
+      "additionalProperties": false,
+      "properties": {
+        "errorCode": {
+          "pattern": "^[A-Z][A-Z0-9_]+$",
+          "title": "Errorcode",
+          "type": "string"
+        },
+        "errorCategory": {
+          "pattern": "^[A-Z][A-Z0-9_]+$",
+          "title": "Errorcategory",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "failedStage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkflowStage"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attempt": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attempt"
+        },
+        "detailsReference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detailsreference"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorCategory",
+        "message",
+        "retryable"
+      ],
+      "title": "CommonError",
+      "type": "object"
+    },
+    "ValidationStatus": {
+      "enum": [
+        "PASSED",
+        "PASSED_WITH_WARNINGS",
+        "FAILED"
+      ],
+      "title": "ValidationStatus",
+      "type": "string"
+    },
+    "WorkflowStage": {
+      "enum": [
+        "SEGMENTATION",
+        "GEOMETRY_EXTRACTION",
+        "IFC_GENERATION",
+        "IFC_VALIDATION",
+        "ARTIFACT_PREPARATION",
+        "COMPLETED"
+      ],
+      "title": "WorkflowStage",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "signalVersion": {
+      "default": "1.0",
+      "pattern": "^1\\.[0-9]+$",
+      "title": "Signalversion",
+      "type": "string"
+    },
+    "eventId": {
+      "format": "uuid",
+      "title": "Eventid",
+      "type": "string"
+    },
+    "eventType": {
+      "minLength": 1,
+      "title": "Eventtype",
+      "type": "string"
+    },
+    "eventVersion": {
+      "default": "1.0",
+      "pattern": "^1\\.[0-9]+$",
+      "title": "Eventversion",
+      "type": "string"
+    },
+    "workflowId": {
+      "minLength": 1,
+      "title": "Workflowid",
+      "type": "string"
+    },
+    "stage": {
+      "$ref": "#/$defs/WorkflowStage"
+    },
+    "attempt": {
+      "minimum": 1,
+      "title": "Attempt",
+      "type": "integer"
+    },
+    "occurredAt": {
+      "format": "date-time",
+      "title": "Occurredat",
+      "type": "string"
+    },
+    "resultSubjectId": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resultsubjectid"
+    },
+    "resultSubjectType": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resultsubjecttype"
+    },
+    "resultArtifactIds": {
+      "default": [],
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "title": "Resultartifactids",
+      "type": "array"
+    },
+    "validationStatus": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ValidationStatus"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CommonError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "eventId",
+    "eventType",
+    "workflowId",
+    "stage",
+    "attempt",
+    "occurredAt"
+  ],
+  "title": "ProcessingOutcomeSignal",
+  "type": "object"
+}

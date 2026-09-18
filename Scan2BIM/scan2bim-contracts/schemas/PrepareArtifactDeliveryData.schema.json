@@ -1,0 +1,120 @@
+{
+  "$defs": {
+    "ArtifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifactId": {
+          "format": "uuid",
+          "title": "Artifactid",
+          "type": "string"
+        },
+        "artifactType": {
+          "$ref": "#/$defs/ArtifactType"
+        },
+        "fileName": {
+          "minLength": 1,
+          "title": "Filename",
+          "type": "string"
+        },
+        "contentType": {
+          "minLength": 1,
+          "title": "Contenttype",
+          "type": "string"
+        },
+        "storageReference": {
+          "minLength": 1,
+          "title": "Storagereference",
+          "type": "string"
+        },
+        "checksumAlgorithm": {
+          "$ref": "#/$defs/ChecksumAlgorithm",
+          "default": "SHA256"
+        },
+        "checksum": {
+          "maxLength": 128,
+          "minLength": 32,
+          "title": "Checksum",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "minimum": 0,
+          "title": "Sizebytes",
+          "type": "integer"
+        },
+        "version": {
+          "default": "1.0",
+          "pattern": "^1\\.[0-9]+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "artifactType",
+        "fileName",
+        "contentType",
+        "storageReference",
+        "checksum",
+        "sizeBytes"
+      ],
+      "title": "ArtifactReference",
+      "type": "object"
+    },
+    "ArtifactType": {
+      "enum": [
+        "SOURCE_POINT_CLOUD",
+        "CANONICAL_POINT_CLOUD",
+        "SEGMENTATION_RESULT",
+        "GEOMETRY_MODEL",
+        "IFC_MODEL_UNVALIDATED",
+        "IFC_MODEL",
+        "VALIDATION_REPORT"
+      ],
+      "title": "ArtifactType",
+      "type": "string"
+    },
+    "ChecksumAlgorithm": {
+      "enum": [
+        "SHA256"
+      ],
+      "title": "ChecksumAlgorithm",
+      "type": "string"
+    },
+    "ValidationStatus": {
+      "enum": [
+        "PASSED",
+        "PASSED_WITH_WARNINGS",
+        "FAILED"
+      ],
+      "title": "ValidationStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "ifcModelId": {
+      "format": "uuid",
+      "title": "Ifcmodelid",
+      "type": "string"
+    },
+    "validationStatus": {
+      "$ref": "#/$defs/ValidationStatus"
+    },
+    "sourceArtifact": {
+      "$ref": "#/$defs/ArtifactReference"
+    },
+    "deliveryProfile": {
+      "default": "PORTAL_DOWNLOAD",
+      "minLength": 1,
+      "title": "Deliveryprofile",
+      "type": "string"
+    }
+  },
+  "required": [
+    "ifcModelId",
+    "validationStatus",
+    "sourceArtifact"
+  ],
+  "title": "PrepareArtifactDeliveryData",
+  "type": "object"
+}

@@ -1,0 +1,169 @@
+{
+  "$defs": {
+    "CommonError": {
+      "additionalProperties": false,
+      "properties": {
+        "errorCode": {
+          "pattern": "^[A-Z][A-Z0-9_]+$",
+          "title": "Errorcode",
+          "type": "string"
+        },
+        "errorCategory": {
+          "pattern": "^[A-Z][A-Z0-9_]+$",
+          "title": "Errorcategory",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "failedStage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkflowStage"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attempt": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attempt"
+        },
+        "detailsReference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detailsreference"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorCategory",
+        "message",
+        "retryable"
+      ],
+      "title": "CommonError",
+      "type": "object"
+    },
+    "WorkflowStage": {
+      "enum": [
+        "SEGMENTATION",
+        "GEOMETRY_EXTRACTION",
+        "IFC_GENERATION",
+        "IFC_VALIDATION",
+        "ARTIFACT_PREPARATION",
+        "COMPLETED"
+      ],
+      "title": "WorkflowStage",
+      "type": "string"
+    },
+    "WorkflowStatus": {
+      "enum": [
+        "STARTED",
+        "IN_PROGRESS",
+        "CANCELLATION_REQUESTED",
+        "COMPLETED",
+        "FAILED",
+        "CANCELLED"
+      ],
+      "title": "WorkflowStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "workflowContractVersion": {
+      "default": "1.0",
+      "pattern": "^1\\.[0-9]+$",
+      "title": "Workflowcontractversion",
+      "type": "string"
+    },
+    "workflowId": {
+      "minLength": 1,
+      "title": "Workflowid",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/WorkflowStatus"
+    },
+    "completedAt": {
+      "format": "date-time",
+      "title": "Completedat",
+      "type": "string"
+    },
+    "ifcModelId": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ifcmodelid"
+    },
+    "readyArtifactIds": {
+      "default": [],
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "title": "Readyartifactids",
+      "type": "array"
+    },
+    "failedStage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WorkflowStage"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "failure": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CommonError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "workflowId",
+    "status",
+    "completedAt"
+  ],
+  "title": "WorkflowResult",
+  "type": "object"
+}
